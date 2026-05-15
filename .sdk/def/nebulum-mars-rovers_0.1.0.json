@@ -1,0 +1,289 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Nebulum Mars Rovers API",
+    "description": "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions. Developers can retrieve images based on unique photo IDs, Earth dates, or Martian sols. This API offers efficient access to fascinating Mars exploration data for enthusiasts and researchers.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Nebulum",
+      "url": "https://rovers.nebulum.one/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://rovers.nebulum.one/api/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/photos/{id}": {
+      "get": {
+        "summary": "Search by Photo ID",
+        "description": "Retrieve a specific photo by its unique identifier",
+        "operationId": "getPhotoById",
+        "tags": [
+          "Photos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of the photo",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 878
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with photo details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Photo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Photo not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rovers/curiosity/photos": {
+      "get": {
+        "summary": "Get Curiosity rover photos",
+        "description": "Retrieve photos from the Curiosity rover by Earth date or Martian sol",
+        "operationId": "getCuriosityPhotos",
+        "tags": [
+          "Curiosity"
+        ],
+        "parameters": [
+          {
+            "name": "earth_date",
+            "in": "query",
+            "description": "Earth date in YYYY-MM-DD format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2015-06-03"
+            }
+          },
+          {
+            "name": "sol",
+            "in": "query",
+            "description": "Martian sol (day) number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 3718
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of photos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rovers/perseverance/photos": {
+      "get": {
+        "summary": "Get Perseverance rover photos",
+        "description": "Retrieve photos from the Perseverance rover by Earth date or Martian sol",
+        "operationId": "getPerseverancePhotos",
+        "tags": [
+          "Perseverance"
+        ],
+        "parameters": [
+          {
+            "name": "earth_date",
+            "in": "query",
+            "description": "Earth date in YYYY-MM-DD format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2025-11-06"
+            }
+          },
+          {
+            "name": "sol",
+            "in": "query",
+            "description": "Martian sol (day) number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "example": 1676
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of photos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhotoCollection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Photo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the photo",
+            "example": 878
+          },
+          "sol": {
+            "type": "integer",
+            "description": "Martian sol (day) when the photo was taken",
+            "example": 1000
+          },
+          "camera": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "Camera identifier"
+              },
+              "name": {
+                "type": "string",
+                "description": "Camera name"
+              },
+              "rover_id": {
+                "type": "integer",
+                "description": "Rover identifier"
+              },
+              "full_name": {
+                "type": "string",
+                "description": "Full camera name"
+              }
+            }
+          },
+          "img_src": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the image file"
+          },
+          "earth_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Earth date when the photo was taken"
+          },
+          "rover": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "Rover identifier"
+              },
+              "name": {
+                "type": "string",
+                "description": "Rover name",
+                "enum": [
+                  "Curiosity",
+                  "Perseverance"
+                ]
+              },
+              "landing_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Date the rover landed on Mars"
+              },
+              "launch_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Date the rover was launched"
+              },
+              "status": {
+                "type": "string",
+                "description": "Current status of the rover"
+              }
+            }
+          }
+        }
+      },
+      "PhotoCollection": {
+        "type": "object",
+        "properties": {
+          "photos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Photo"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Photos",
+      "description": "Operations related to photo retrieval by ID"
+    },
+    {
+      "name": "Curiosity",
+      "description": "Photos from the Curiosity rover (landed August 6, 2012)"
+    },
+    {
+      "name": "Perseverance",
+      "description": "Photos from the Perseverance rover (landed February 18, 2021)"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "photo": {
+      "PHOTO00": {
+        "camera": {},
+        "earth_date": "s3d",
+        "id": "PHOTO00",
+        "img_src": "s3f",
+        "rover": {},
+        "sol": "s41"
+      },
+      "PHOTO01": {
+        "camera": {},
+        "earth_date": "s79",
+        "id": "PHOTO01",
+        "img_src": "s7b",
+        "rover": {},
+        "sol": "s7d"
+      },
+      "PHOTO02": {
+        "camera": {},
+        "earth_date": "sb5",
+        "id": "PHOTO02",
+        "img_src": "sb7",
+        "rover": {},
+        "sol": "sb9"
+      }
+    }
+  },
+  "new": {
+    "photo": {
+      "photo_ref01": {
+        "camera": {},
+        "earth_date": "sf1",
+        "img_src": "sf3",
+        "rover": {},
+        "sol": "sf5"
+      }
+    }
+  }
+}

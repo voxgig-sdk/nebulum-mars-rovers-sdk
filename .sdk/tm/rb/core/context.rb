@@ -1,0 +1,105 @@
+# NebulumMarsRovers SDK context
+
+require_relative '../utility/struct/voxgig_struct'
+require_relative 'control'
+require_relative 'operation'
+require_relative 'spec'
+require_relative 'result'
+require_relative 'response'
+require_relative 'error'
+require_relative 'helpers'
+
+class NebulumMarsRoversContext
+  attr_accessor :id, :out, :client, :utility, :ctrl, :meta, :config,
+                :entopts, :options, :entity, :shared, :opmap,
+                :data, :reqdata, :match, :reqmatch, :point,
+                :spec, :result, :response, :op
+
+  def initialize(ctxmap = {}, basectx = nil)
+    ctxmap ||= {}
+    @id = "C#{rand(10000000..99999999)}"
+    @out = {}
+
+    @client = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "client") || basectx&.client
+    @utility = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "utility") || basectx&.utility
+
+    @ctrl = NebulumMarsRoversControl.new
+    ctrl_raw = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "ctrl")
+    if ctrl_raw.is_a?(Hash)
+      @ctrl.throw_err = ctrl_raw["throw"] if ctrl_raw.key?("throw")
+      @ctrl.explain = ctrl_raw["explain"] if ctrl_raw["explain"].is_a?(Hash)
+    elsif basectx&.ctrl
+      @ctrl = basectx.ctrl
+    end
+
+    m = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "meta")
+    @meta = m.is_a?(Hash) ? m : (basectx&.meta || {})
+
+    cfg = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "config")
+    @config = cfg.is_a?(Hash) ? cfg : basectx&.config
+
+    eo = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "entopts")
+    @entopts = eo.is_a?(Hash) ? eo : basectx&.entopts
+
+    o = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "options")
+    @options = o.is_a?(Hash) ? o : basectx&.options
+
+    e = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "entity")
+    @entity = e || basectx&.entity
+
+    s = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "shared")
+    @shared = s.is_a?(Hash) ? s : basectx&.shared
+
+    om = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "opmap")
+    @opmap = om.is_a?(Hash) ? om : (basectx&.opmap || {})
+
+    @data = NebulumMarsRoversHelpers.to_map(NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "data")) || {}
+    @reqdata = NebulumMarsRoversHelpers.to_map(NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "reqdata")) || {}
+    @match = NebulumMarsRoversHelpers.to_map(NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "match")) || {}
+    @reqmatch = NebulumMarsRoversHelpers.to_map(NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "reqmatch")) || {}
+
+    pt = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "point")
+    @point = pt.is_a?(Hash) ? pt : basectx&.point
+
+    sp = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "spec")
+    @spec = sp.is_a?(NebulumMarsRoversSpec) ? sp : basectx&.spec
+
+    r = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "result")
+    @result = r.is_a?(NebulumMarsRoversResult) ? r : basectx&.result
+
+    rp = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "response")
+    @response = rp.is_a?(NebulumMarsRoversResponse) ? rp : basectx&.response
+
+    opname = NebulumMarsRoversHelpers.get_ctx_prop(ctxmap, "opname") || ""
+    @op = resolve_op(opname)
+  end
+
+  def resolve_op(opname)
+    return @opmap[opname] if @opmap[opname]
+    return NebulumMarsRoversOperation.new({}) if opname.empty?
+
+    entname = @entity&.respond_to?(:get_name) ? @entity.get_name : "_"
+    opcfg = VoxgigStruct.getpath(@config, "entity.#{entname}.op.#{opname}")
+
+    input = (opname == "update" || opname == "create") ? "data" : "match"
+
+    points = []
+    if opcfg.is_a?(Hash)
+      t = VoxgigStruct.getprop(opcfg, "points")
+      points = t if t.is_a?(Array)
+    end
+
+    op = NebulumMarsRoversOperation.new({
+      "entity" => entname,
+      "name" => opname,
+      "input" => input,
+      "points" => points,
+    })
+    @opmap[opname] = op
+    op
+  end
+
+  def make_error(code, msg)
+    NebulumMarsRoversError.new(code, msg, self)
+  end
+end

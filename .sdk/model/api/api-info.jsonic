@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Nebulum"
+        url: "https://rovers.nebulum.one/"
+      }
+      description: "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions. Developers can retrieve images based on unique photo IDs, Earth dates, or Martian sols. This API offers efficient access to fascinating Mars exploration data for enthusiasts and researchers."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://rovers.nebulum.one/api/v1"
+        }
+      ]
+      title: "Nebulum Mars Rovers API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
