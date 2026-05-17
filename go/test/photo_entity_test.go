@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk"
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/utility/struct"
 )
 
 func TestPhotoEntity(t *testing.T) {

@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk"
+	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
 )
 
 func TestExists(t *testing.T) {

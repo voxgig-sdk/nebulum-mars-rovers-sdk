@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+import "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 
 func cleanUtil(ctx *core.Context, val any) any {
 	return val

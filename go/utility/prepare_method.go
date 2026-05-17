@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+import "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 
 func prepareMethodUtil(ctx *core.Context) string {
 	opname := ctx.Op.Name

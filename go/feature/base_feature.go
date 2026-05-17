@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 )
 
 type BaseFeature struct {

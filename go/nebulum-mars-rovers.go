@@ -1,10 +1,10 @@
 package voxgignebulummarsroverssdk
 
 import (
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/entity"
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/feature"
-	_ "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/utility"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/entity"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/feature"
+	_ "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

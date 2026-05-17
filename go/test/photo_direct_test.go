@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk"
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+	sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 )
 
 func TestPhotoDirect(t *testing.T) {

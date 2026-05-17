@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/core"
+	"github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go/core"
 )
 
 type LogFeature struct {
