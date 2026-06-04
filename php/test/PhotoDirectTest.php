@@ -121,14 +121,12 @@ function photo_direct_setup($mockres)
     $env = Runner::env_override([
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID" => [],
         "NEBULUMMARSROVERS_TEST_LIVE" => "FALSE",
-        "NEBULUMMARSROVERS_APIKEY" => "NONE",
     ]);
 
     $live = $env["NEBULUMMARSROVERS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["NEBULUMMARSROVERS_APIKEY"],
         ];
         $client = new NebulumMarsRoversSDK($merged_opts);
         return [

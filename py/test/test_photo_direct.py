@@ -106,14 +106,12 @@ def _photo_direct_setup(mockres):
     env = runner.env_override({
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID": {},
         "NEBULUMMARSROVERS_TEST_LIVE": "FALSE",
-        "NEBULUMMARSROVERS_APIKEY": "NONE",
     })
 
     live = env.get("NEBULUMMARSROVERS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("NEBULUMMARSROVERS_APIKEY"),
         }
         client = NebulumMarsRoversSDK(merged_opts)
         return {

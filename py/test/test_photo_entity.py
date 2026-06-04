@@ -102,7 +102,6 @@ def _photo_basic_setup(extra):
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID": idmap,
         "NEBULUMMARSROVERS_TEST_LIVE": "FALSE",
         "NEBULUMMARSROVERS_TEST_EXPLAIN": "FALSE",
-        "NEBULUMMARSROVERS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +112,6 @@ def _photo_basic_setup(extra):
     if env.get("NEBULUMMARSROVERS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NEBULUMMARSROVERS_APIKEY"),
             },
             extra or {},
         ])

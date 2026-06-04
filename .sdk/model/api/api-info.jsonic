@@ -17,8 +17,29 @@ main: {
       ]
       title: "Nebulum Mars Rovers API"
       version: "1.0.0"
+      tagline: "Fetch Mars rover photos from Curiosity and Perseverance by photo ID, Earth date, or Martian sol"
+      homepage: "https://rovers.nebulum.one/"
+      docs_url: "https://rovers.nebulum.one/"
+      license_short: "Free for developers; photo data originates from NASA missions"
+      license_md: `- Free to use for developers, no authentication required
+- Underlying imagery originates from NASA's Mars rover missions and is generally public-domain
+- No explicit licence terms are published by Nebulum; check NASA media usage guidelines when redistributing images
+- CORS is disabled, so browser-based access may require a proxy`
+      about_md: `The [Nebulum Mars Rovers API](https://rovers.nebulum.one/) is a free, no-auth service operated by Nebulum that surfaces photographs taken by NASA's Mars rovers Curiosity (landed August 2012) and Perseverance (landed February 2021). Data is sourced from NASA's own rover photo feeds.
+
+What you get from the API:
+
+- Lookup a single photo by its numeric ID: \`GET /photos/{id}\`
+- List Curiosity photos by Earth date: \`GET /rovers/curiosity/photos?earth_date=YYYY-MM-DD\`
+- List Curiosity photos by Martian sol: \`GET /rovers/curiosity/photos?sol={sol}\`
+- List Perseverance photos by Earth date: \`GET /rovers/perseverance/photos?earth_date=YYYY-MM-DD\`
+- List Perseverance photos by Martian sol: \`GET /rovers/perseverance/photos?sol={sol}\`
+
+Operational notes: no API key is required, CORS is disabled, and the community catalogue page reports an average response time near 632ms with high recent reliability. Rate limits are not publicly documented.`
+      entity_desc: {
+        photo: "A single rover image record, addressable by numeric ID via `GET /photos/{id}` or listed per rover and date/sol via `GET /rovers/curiosity/photos` and `GET /rovers/perseverance/photos`."
+      }
+      auth: false
     }
   }
-}
-
 }

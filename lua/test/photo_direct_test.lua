@@ -115,14 +115,12 @@ function photo_direct_setup(mockres)
   local env = runner.env_override({
     ["NEBULUMMARSROVERS_TEST_PHOTO_ENTID"] = {},
     ["NEBULUMMARSROVERS_TEST_LIVE"] = "FALSE",
-    ["NEBULUMMARSROVERS_APIKEY"] = "NONE",
   })
 
   local live = env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["NEBULUMMARSROVERS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

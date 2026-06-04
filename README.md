@@ -1,9 +1,100 @@
 # NebulumMarsRovers SDK
 
+Fetch Mars rover photos from Curiosity and Perseverance by photo ID, Earth date, or Martian sol
 
+> TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-Available for [Golang](go/) and [Go CLI](go-cli/) and [Go MCP server](go-mcp/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
+## About Nebulum Mars Rovers API
 
+The [Nebulum Mars Rovers API](https://rovers.nebulum.one/) is a free, no-auth service operated by Nebulum that surfaces photographs taken by NASA's Mars rovers Curiosity (landed August 2012) and Perseverance (landed February 2021). Data is sourced from NASA's own rover photo feeds.
+
+What you get from the API:
+
+- Lookup a single photo by its numeric ID: `GET /photos/{id}`
+- List Curiosity photos by Earth date: `GET /rovers/curiosity/photos?earth_date=YYYY-MM-DD`
+- List Curiosity photos by Martian sol: `GET /rovers/curiosity/photos?sol={sol}`
+- List Perseverance photos by Earth date: `GET /rovers/perseverance/photos?earth_date=YYYY-MM-DD`
+- List Perseverance photos by Martian sol: `GET /rovers/perseverance/photos?sol={sol}`
+
+Operational notes: no API key is required, CORS is disabled, and the community catalogue page reports an average response time near 632ms with high recent reliability. Rate limits are not publicly documented.
+
+## Try it
+
+**TypeScript**
+```bash
+npm install nebulum-mars-rovers
+```
+
+**Python**
+```bash
+pip install nebulum-mars-rovers-sdk
+```
+
+**PHP**
+```bash
+composer require voxgig/nebulum-mars-rovers-sdk
+```
+
+**Golang**
+```bash
+go get github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go
+```
+
+**Ruby**
+```bash
+gem install nebulum-mars-rovers-sdk
+```
+
+**Lua**
+```bash
+luarocks install nebulum-mars-rovers-sdk
+```
+
+## 30-second quickstart
+
+### TypeScript
+
+```ts
+import { NebulumMarsRoversSDK } from 'nebulum-mars-rovers'
+
+const client = new NebulumMarsRoversSDK({})
+
+// List all photos
+const photos = await client.Photo().list()
+```
+
+See the [TypeScript README](ts/README.md) for the
+full guide, or scroll down for the same example in other languages.
+
+## What's in the box
+
+| Surface | Use it for | Path |
+| --- | --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
+| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+
+## Use it from an AI agent (MCP)
+
+The generated MCP server exposes every operation in this SDK as an
+[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
+can call directly. Build and register it:
+
+```bash
+cd go-mcp && go build -o nebulum-mars-rovers-mcp .
+```
+
+Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
+
+```json
+{
+  "mcpServers": {
+    "nebulum-mars-rovers": {
+      "command": "/abs/path/to/nebulum-mars-rovers-mcp"
+    }
+  }
+}
+```
 
 ## Entities
 
@@ -11,110 +102,19 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Photo** |  | `/rovers/curiosity/photos` |
+| **Photo** | A single rover image record, addressable by numeric ID via `GET /photos/{id}` or listed per rover and date/sol via `GET /rovers/curiosity/photos` and `GET /rovers/perseverance/photos`. | `/rovers/curiosity/photos` |
 
-Each entity supports the following operations where available: **load**, **list**, **create**,
-**update**, and **remove**.
+Each entity supports the following operations where available: **load**,
+**list**, **create**, **update**, and **remove**.
 
-
-## Architecture
-
-### Entity-operation model
-
-Every SDK call follows the same pipeline:
-
-1. **Point** — resolve the API endpoint from the operation definition.
-2. **Spec** — build the HTTP specification (URL, method, headers, body).
-3. **Request** — send the HTTP request.
-4. **Response** — receive and parse the response.
-5. **Result** — extract the result data for the caller.
-
-At each stage a feature hook fires (e.g. `PrePoint`, `PreSpec`,
-`PreRequest`), allowing features to inspect or modify the pipeline.
-
-### Features
-
-Features are hook-based middleware that extend SDK behaviour.
-
-| Feature | Purpose |
-| --- | --- |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-
-You can add custom features by passing them in the `extend` option at
-construction time.
-
-### Direct and Prepare
-
-For endpoints not covered by the entity model, use the low-level methods:
-
-- **`direct(fetchargs)`** — build and send an HTTP request in one step.
-- **`prepare(fetchargs)`** — build the request without sending it.
-
-Both accept a map with `path`, `method`, `params`, `query`, `headers`,
-and `body`.
-
-
-## Quick start
-
-### Golang
-
-```go
-import sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
-
-client := sdk.NewNebulumMarsRoversSDK(map[string]any{
-    "apikey": os.Getenv("NEBULUM-MARS-ROVERS_APIKEY"),
-})
-
-// List all photos
-photos, err := client.Photo(nil).List(nil, nil)
-```
-
-### Lua
-
-```lua
-local sdk = require("nebulum-mars-rovers_sdk")
-
-local client = sdk.new({
-  apikey = os.getenv("NEBULUM-MARS-ROVERS_APIKEY"),
-})
-
--- List all photos
-local photos, err = client:Photo(nil):list(nil, nil)
-
--- Load a specific photo
-local photo, err = client:Photo(nil):load(
-  { id = "example_id" }, nil
-)
-```
-
-### PHP
-
-```php
-<?php
-require_once 'nebulummarsrovers_sdk.php';
-
-$client = new NebulumMarsRoversSDK([
-    "apikey" => getenv("NEBULUM-MARS-ROVERS_APIKEY"),
-]);
-
-// List all photos
-[$photos, $err] = $client->Photo(null)->list(null, null);
-
-// Load a specific photo
-[$photo, $err] = $client->Photo(null)->load(
-    ["id" => "example_id"], null
-);
-```
+## Quickstart in other languages
 
 ### Python
 
 ```python
-import os
 from nebulummarsrovers_sdk import NebulumMarsRoversSDK
 
-client = NebulumMarsRoversSDK({
-    "apikey": os.environ.get("NEBULUM-MARS-ROVERS_APIKEY"),
-})
+client = NebulumMarsRoversSDK({})
 
 # List all photos
 photos, err = client.Photo(None).list(None, None)
@@ -125,14 +125,40 @@ photo, err = client.Photo(None).load(
 )
 ```
 
+### PHP
+
+```php
+<?php
+require_once 'nebulummarsrovers_sdk.php';
+
+$client = new NebulumMarsRoversSDK([]);
+
+// List all photos
+[$photos, $err] = $client->Photo(null)->list(null, null);
+
+// Load a specific photo
+[$photo, $err] = $client->Photo(null)->load(
+    ["id" => "example_id"], null
+);
+```
+
+### Golang
+
+```go
+import sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
+
+client := sdk.NewNebulumMarsRoversSDK(map[string]any{})
+
+// List all photos
+photos, err := client.Photo(nil).List(nil, nil)
+```
+
 ### Ruby
 
 ```ruby
 require_relative "NebulumMarsRovers_sdk"
 
-client = NebulumMarsRoversSDK.new({
-  "apikey" => ENV["NEBULUM-MARS-ROVERS_APIKEY"],
-})
+client = NebulumMarsRoversSDK.new({})
 
 # List all photos
 photos, err = client.Photo(nil).list(nil, nil)
@@ -143,40 +169,41 @@ photo, err = client.Photo(nil).load(
 )
 ```
 
-### TypeScript
-
-```ts
-import { NebulumMarsRoversSDK } from 'nebulum-mars-rovers'
-
-const client = new NebulumMarsRoversSDK({
-  apikey: process.env.NEBULUM-MARS-ROVERS_APIKEY,
-})
-
-// List all photos
-const photos = await client.Photo().list()
-```
-
-
-## Testing
-
-Both SDKs provide a test mode that replaces the HTTP transport with an
-in-memory mock, so tests run without a network connection.
-
-### Golang
-
-```go
-client := sdk.TestSDK(nil, nil)
-result, err := client.Photo(nil).Load(
-    map[string]any{"id": "test01"}, nil,
-)
-```
-
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Photo(nil):load(
-  { id = "test01" }, nil
+local sdk = require("nebulum-mars-rovers_sdk")
+
+local client = sdk.new({})
+
+-- List all photos
+local photos, err = client:Photo(nil):list(nil, nil)
+
+-- Load a specific photo
+local photo, err = client:Photo(nil):load(
+  { id = "example_id" }, nil
+)
+```
+
+## Unit testing in offline mode
+
+Every SDK ships a test mode that swaps the HTTP transport for an
+in-memory mock, so unit tests run offline.
+
+### TypeScript
+
+```ts
+const client = NebulumMarsRoversSDK.test()
+const result = await client.Photo().load({ id: 'test01' })
+// result.ok === true, result.data contains mock data
+```
+
+### Python
+
+```python
+client = NebulumMarsRoversSDK.test(None, None)
+result, err = client.Photo(None).load(
+    {"id": "test01"}, None
 )
 ```
 
@@ -189,12 +216,12 @@ $client = NebulumMarsRoversSDK::test(null, null);
 );
 ```
 
-### Python
+### Golang
 
-```python
-client = NebulumMarsRoversSDK.test(None, None)
-result, err = client.Photo(None).load(
-    {"id": "test01"}, None
+```go
+client := sdk.TestSDK(nil, nil)
+result, err := client.Photo(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -207,14 +234,46 @@ result, err = client.Photo(nil).load(
 )
 ```
 
-### TypeScript
+### Lua
 
-```ts
-const client = NebulumMarsRoversSDK.test()
-const result = await client.Photo().load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+```lua
+local client = sdk.test(nil, nil)
+local result, err = client:Photo(nil):load(
+  { id = "test01" }, nil
+)
 ```
 
+## How it works
+
+Every SDK call runs the same five-stage pipeline:
+
+1. **Point** — resolve the API endpoint from the operation definition.
+2. **Spec** — build the HTTP specification (URL, method, headers, body).
+3. **Request** — send the HTTP request.
+4. **Response** — receive and parse the response.
+5. **Result** — extract the result data for the caller.
+
+A feature hook fires at each stage (e.g. `PrePoint`, `PreSpec`,
+`PreRequest`), so features can inspect or modify the pipeline without
+forking the SDK.
+
+### Features
+
+| Feature | Purpose |
+| --- | --- |
+| **TestFeature** | In-memory mock transport for testing without a live server |
+
+Pass custom features via the `extend` option at construction time.
+
+### Direct and Prepare
+
+For endpoints the entity model doesn't cover, use the low-level methods:
+
+- **`direct(fetchargs)`** — build and send an HTTP request in one step.
+- **`prepare(fetchargs)`** — build the request without sending it.
+
+Both accept a map with `path`, `method`, `params`, `query`,
+`headers`, and `body`. See the [How-to guides](#how-to-guides) below.
 
 ## How-to guides
 
@@ -222,21 +281,22 @@ const result = await client.Photo().load({ id: 'test01' })
 
 When the entity interface does not cover an endpoint, use `direct`:
 
-**Go:**
-```go
-result, err := client.Direct(map[string]any{
-    "path":   "/api/resource/{id}",
-    "method": "GET",
-    "params": map[string]any{"id": "example"},
+**TypeScript:**
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example' },
 })
+console.log(result.data)
 ```
 
-**Lua:**
-```lua
-local result, err = client:direct({
-  path = "/api/resource/{id}",
-  method = "GET",
-  params = { id = "example" },
+**Python:**
+```python
+result, err = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example"},
 })
 ```
 
@@ -249,12 +309,12 @@ local result, err = client:direct({
 ]);
 ```
 
-**Python:**
-```python
-result, err = client.direct({
-    "path": "/api/resource/{id}",
+**Go:**
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
     "method": "GET",
-    "params": {"id": "example"},
+    "params": map[string]any{"id": "example"},
 })
 ```
 
@@ -267,25 +327,33 @@ result, err = client.direct({
 })
 ```
 
-**TypeScript:**
-```ts
-const result = await client.direct({
-  path: '/api/resource/{id}',
-  method: 'GET',
-  params: { id: 'example' },
+**Lua:**
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example" },
 })
-console.log(result.data)
 ```
 
+## Per-language documentation
 
-## Language-specific documentation
+- [TypeScript](ts/README.md)
+- [Python](py/README.md)
+- [PHP](php/README.md)
+- [Golang](go/README.md)
+- [Ruby](rb/README.md)
+- [Lua](lua/README.md)
 
-- [Golang SDK](go/README.md)
-- [Go CLI SDK](go-cli/README.md)
-- [Go MCP server SDK](go-mcp/README.md)
-- [Lua SDK](lua/README.md)
-- [PHP SDK](php/README.md)
-- [Python SDK](py/README.md)
-- [Ruby SDK](rb/README.md)
-- [TypeScript SDK](ts/README.md)
+## Using the Nebulum Mars Rovers API
 
+- Upstream: [https://rovers.nebulum.one/](https://rovers.nebulum.one/)
+
+- Free to use for developers, no authentication required
+- Underlying imagery originates from NASA's Mars rover missions and is generally public-domain
+- No explicit licence terms are published by Nebulum; check NASA media usage guidelines when redistributing images
+- CORS is disabled, so browser-based access may require a proxy
+
+---
+
+Generated from the Nebulum Mars Rovers API OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
