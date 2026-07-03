@@ -10,13 +10,13 @@ The Ruby SDK for the NebulumMarsRovers API — an entity-oriented client using i
 
 ## Install
 ```bash
-gem install nebulum-mars-rovers-sdk
+gem install voxgig-sdk-nebulum-mars-rovers
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "nebulum-mars-rovers-sdk"
+gem "voxgig-sdk-nebulum-mars-rovers"
 ```
 
 Then run:

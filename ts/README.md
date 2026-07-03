@@ -10,7 +10,7 @@ The TypeScript SDK for the NebulumMarsRovers API — a type-safe, entity-oriente
 
 ## Install
 ```bash
-npm install nebulum-mars-rovers
+npm install @voxgig-sdk/nebulum-mars-rovers
 ```
 ## Tutorial: your first API call
 

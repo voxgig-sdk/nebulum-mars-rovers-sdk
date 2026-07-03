@@ -8,12 +8,14 @@ source = {
   dir = "nebulum-mars-rovers-sdk/lua"
 }
 description = {
-  summary = "NebulumMarsRovers SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Nebulum Mars Rovers public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk",
+  issues_url = "https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "nebulum-mars-rovers" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

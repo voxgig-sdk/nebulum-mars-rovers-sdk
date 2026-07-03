@@ -10,7 +10,7 @@ The Lua SDK for the NebulumMarsRovers API — an entity-oriented client using Lu
 
 ## Install
 ```bash
-luarocks install nebulum-mars-rovers-sdk
+luarocks install voxgig-sdk-nebulum-mars-rovers
 ```
 
 If the module is not yet published, add the source directory to

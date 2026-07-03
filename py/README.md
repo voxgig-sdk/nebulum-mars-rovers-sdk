@@ -10,7 +10,7 @@ The Python SDK for the NebulumMarsRovers API — an entity-oriented client follo
 
 ## Install
 ```bash
-pip install nebulum-mars-rovers-sdk
+pip install voxgig-sdk-nebulum-mars-rovers
 ```
 
 Or install from source:

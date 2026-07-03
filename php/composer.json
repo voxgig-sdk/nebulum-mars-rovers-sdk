@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/nebulum-mars-rovers",
-  "description": "NebulumMarsRovers SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Nebulum Mars Rovers public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "nebulum-mars-rovers"],
+  "homepage": "https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

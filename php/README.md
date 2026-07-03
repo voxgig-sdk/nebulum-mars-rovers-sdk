@@ -10,7 +10,7 @@ The PHP SDK for the NebulumMarsRovers API — an entity-oriented client using PH
 
 ## Install
 ```bash
-composer require voxgig/nebulum-mars-rovers-sdk
+composer require voxgig-sdk/nebulum-mars-rovers
 ```
 
 
