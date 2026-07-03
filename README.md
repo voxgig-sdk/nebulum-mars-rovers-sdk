@@ -1,22 +1,8 @@
 # NebulumMarsRovers SDK
 
-Fetch Mars rover photos from Curiosity and Perseverance by photo ID, Earth date, or Martian sol
+Nebulum Mars Rovers API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Nebulum Mars Rovers API
-
-The [Nebulum Mars Rovers API](https://rovers.nebulum.one/) is a free, no-auth service operated by Nebulum that surfaces photographs taken by NASA's Mars rovers Curiosity (landed August 2012) and Perseverance (landed February 2021). Data is sourced from NASA's own rover photo feeds.
-
-What you get from the API:
-
-- Lookup a single photo by its numeric ID: `GET /photos/{id}`
-- List Curiosity photos by Earth date: `GET /rovers/curiosity/photos?earth_date=YYYY-MM-DD`
-- List Curiosity photos by Martian sol: `GET /rovers/curiosity/photos?sol={sol}`
-- List Perseverance photos by Earth date: `GET /rovers/perseverance/photos?earth_date=YYYY-MM-DD`
-- List Perseverance photos by Martian sol: `GET /rovers/perseverance/photos?sol={sol}`
-
-Operational notes: no API key is required, CORS is disabled, and the community catalogue page reports an average response time near 632ms with high recent reliability. Rate limits are not publicly documented.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install nebulum-mars-rovers-sdk
 luarocks install nebulum-mars-rovers-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NebulumMarsRoversSDK } from 'nebulum-mars-rovers'
 
-const client = new NebulumMarsRoversSDK({})
+const client = new NebulumMarsRoversSDK({
+  apikey: process.env.NEBULUM-MARS-ROVERS_APIKEY,
+})
 
 // List all photos
 const photos = await client.Photo().list()
+console.log(photos.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Photo** | A single rover image record, addressable by numeric ID via `GET /photos/{id}` or listed per rover and date/sol via `GET /rovers/curiosity/photos` and `GET /rovers/perseverance/photos`. | `/rovers/curiosity/photos` |
+| **Photo** |  | `/rovers/curiosity/photos` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,17 +100,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from nebulummarsrovers_sdk import NebulumMarsRoversSDK
 
-client = NebulumMarsRoversSDK({})
+client = NebulumMarsRoversSDK({
+    "apikey": os.environ.get("NEBULUM-MARS-ROVERS_APIKEY"),
+})
 
 # List all photos
-photos, err = client.Photo(None).list(None, None)
+photos, err = client.Photo().list()
+print(photos)
 
 # Load a specific photo
-photo, err = client.Photo(None).load(
-    {"id": "example_id"}, None
-)
+photo, err = client.Photo().load({"id": "example_id"})
+print(photo)
 ```
 
 ### PHP
@@ -131,15 +122,17 @@ photo, err = client.Photo(None).load(
 <?php
 require_once 'nebulummarsrovers_sdk.php';
 
-$client = new NebulumMarsRoversSDK([]);
+$client = new NebulumMarsRoversSDK([
+    "apikey" => getenv("NEBULUM-MARS-ROVERS_APIKEY"),
+]);
 
 // List all photos
-[$photos, $err] = $client->Photo(null)->list(null, null);
+[$photos, $err] = $client->Photo()->list();
+print_r($photos);
 
 // Load a specific photo
-[$photo, $err] = $client->Photo(null)->load(
-    ["id" => "example_id"], null
-);
+[$photo, $err] = $client->Photo()->load(["id" => "example_id"]);
+print_r($photo);
 ```
 
 ### Golang
@@ -147,10 +140,13 @@ $client = new NebulumMarsRoversSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go"
 
-client := sdk.NewNebulumMarsRoversSDK(map[string]any{})
+client := sdk.NewNebulumMarsRoversSDK(map[string]any{
+    "apikey": os.Getenv("NEBULUM-MARS-ROVERS_APIKEY"),
+})
 
 // List all photos
 photos, err := client.Photo(nil).List(nil, nil)
+fmt.Println(photos)
 ```
 
 ### Ruby
@@ -158,15 +154,17 @@ photos, err := client.Photo(nil).List(nil, nil)
 ```ruby
 require_relative "NebulumMarsRovers_sdk"
 
-client = NebulumMarsRoversSDK.new({})
+client = NebulumMarsRoversSDK.new({
+  "apikey" => ENV["NEBULUM-MARS-ROVERS_APIKEY"],
+})
 
 # List all photos
-photos, err = client.Photo(nil).list(nil, nil)
+photos, err = client.Photo().list
+puts photos
 
 # Load a specific photo
-photo, err = client.Photo(nil).load(
-  { "id" => "example_id" }, nil
-)
+photo, err = client.Photo().load({ "id" => "example_id" })
+puts photo
 ```
 
 ### Lua
@@ -174,15 +172,17 @@ photo, err = client.Photo(nil).load(
 ```lua
 local sdk = require("nebulum-mars-rovers_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NEBULUM-MARS-ROVERS_APIKEY"),
+})
 
 -- List all photos
-local photos, err = client:Photo(nil):list(nil, nil)
+local photos, err = client:Photo():list()
+print(photos)
 
 -- Load a specific photo
-local photo, err = client:Photo(nil):load(
-  { id = "example_id" }, nil
-)
+local photo, err = client:Photo():load({ id = "example_id" })
+print(photo)
 ```
 
 ## Unit testing in offline mode
@@ -201,25 +201,21 @@ const result = await client.Photo().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NebulumMarsRoversSDK.test(None, None)
-result, err = client.Photo(None).load(
-    {"id": "test01"}, None
-)
+client = NebulumMarsRoversSDK.test()
+result, err = client.Photo().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NebulumMarsRoversSDK::test(null, null);
-[$result, $err] = $client->Photo(null)->load(
-    ["id" => "test01"], null
-);
+$client = NebulumMarsRoversSDK::test();
+[$result, $err] = $client->Photo()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Photo(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -228,19 +224,15 @@ result, err := client.Photo(nil).Load(
 ### Ruby
 
 ```ruby
-client = NebulumMarsRoversSDK.test(nil, nil)
-result, err = client.Photo(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NebulumMarsRoversSDK.test
+result, err = client.Photo().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Photo(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Photo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -344,15 +336,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Nebulum Mars Rovers API
-
-- Upstream: [https://rovers.nebulum.one/](https://rovers.nebulum.one/)
-
-- Free to use for developers, no authentication required
-- Underlying imagery originates from NASA's Mars rover missions and is generally public-domain
-- No explicit licence terms are published by Nebulum; check NASA media usage guidelines when redistributing images
-- CORS is disabled, so browser-based access may require a proxy
 
 ---
 

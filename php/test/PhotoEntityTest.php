@@ -96,6 +96,7 @@ function photo_basic_setup($extra)
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID" => $idmap,
         "NEBULUMMARSROVERS_TEST_LIVE" => "FALSE",
         "NEBULUMMARSROVERS_TEST_EXPLAIN" => "FALSE",
+        "NEBULUMMARSROVERS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,6 +108,7 @@ function photo_basic_setup($extra)
     if ($env["NEBULUMMARSROVERS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["NEBULUMMARSROVERS_APIKEY"],
             ],
             $extra ?? [],
         ]);

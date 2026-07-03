@@ -14,6 +14,9 @@ local function make_config()
     },
     options = {
       base = "https://rovers.nebulum.one/api/v1",
+      auth = {
+        prefix = "Bearer",
+      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -25,73 +28,75 @@ local function make_config()
       ["photo"] = {
         ["fields"] = {
           {
+            ["active"] = true,
             ["name"] = "camera",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 0,
           },
           {
+            ["active"] = true,
             ["name"] = "earth_date",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 1,
           },
           {
+            ["active"] = true,
             ["name"] = "id",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["active"] = true,
             ["index$"] = 2,
           },
           {
+            ["active"] = true,
             ["name"] = "img_src",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["active"] = true,
             ["index$"] = 3,
           },
           {
+            ["active"] = true,
             ["name"] = "rover",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["active"] = true,
             ["index$"] = 4,
           },
           {
+            ["active"] = true,
             ["name"] = "sol",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["active"] = true,
             ["index$"] = 5,
           },
         },
         ["name"] = "photo",
         ["op"] = {
           ["list"] = {
+            ["input"] = "data",
             ["name"] = "list",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "2015-06-03",
                       ["kind"] = "query",
                       ["name"] = "earth_date",
                       ["orig"] = "earth_date",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                     {
+                      ["active"] = true,
                       ["example"] = 3718,
                       ["kind"] = "query",
                       ["name"] = "sol",
                       ["orig"] = "sol",
                       ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -112,29 +117,29 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 0,
               },
               {
+                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
+                      ["active"] = true,
                       ["example"] = "2025-11-06",
                       ["kind"] = "query",
                       ["name"] = "earth_date",
                       ["orig"] = "earth_date",
                       ["reqd"] = false,
                       ["type"] = "`$STRING`",
-                      ["active"] = true,
                     },
                     {
+                      ["active"] = true,
                       ["example"] = 1676,
                       ["kind"] = "query",
                       ["name"] = "sol",
                       ["orig"] = "sol",
                       ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -155,27 +160,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 1,
               },
             },
-            ["input"] = "data",
             ["key$"] = "list",
           },
           ["load"] = {
+            ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
+                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
+                      ["active"] = true,
                       ["example"] = 878,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
-                      ["active"] = true,
                     },
                   },
                 },
@@ -194,11 +199,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["active"] = true,
                 ["index$"] = 0,
               },
             },
-            ["input"] = "data",
             ["key$"] = "load",
           },
         },

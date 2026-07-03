@@ -120,6 +120,7 @@ function basicSetup(extra?: any) {
     'NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID': idmap,
     'NEBULUM_MARS_ROVERS_TEST_LIVE': 'FALSE',
     'NEBULUM_MARS_ROVERS_TEST_EXPLAIN': 'FALSE',
+    'NEBULUM_MARS_ROVERS_APIKEY': 'NONE',
   })
 
   idmap = env['NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID']
@@ -129,6 +130,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NebulumMarsRoversSDK(merge([
       {
+        apikey: env.NEBULUM_MARS_ROVERS_APIKEY,
       },
       extra
     ]))
