@@ -204,14 +204,7 @@ class NebulumMarsRoversSDK {
 
 
 
-  _photo?: PhotoEntity
-
-  // Idiomatic facade: `client.photo.list()` / `client.photo.load({ id })`.
-  get photo(): PhotoEntity {
-    return (this._photo ??= new PhotoEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.photo` instead. */
+  // Entity access: `client.Photo().list()` / `client.Photo().load({ id })`.
   Photo(data?: any) {
     const self = this
     return new PhotoEntity(self,data)

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:photo():list() / client:photo():load({ id = ... })
-function NebulumMarsRoversSDK:photo(data)
+-- Idiomatic facade: client:Photo():list() / client:Photo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NebulumMarsRoversSDK:Photo(data)
   local EntityMod = require("entity.photo_entity")
   if data == nil then
     if self._photo == nil then
@@ -253,12 +254,6 @@ function NebulumMarsRoversSDK:photo(data)
     end
     return self._photo
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:photo() instead.
-function NebulumMarsRoversSDK:Photo(data)
-  local EntityMod = require("entity.photo_entity")
   return EntityMod.new(self, data)
 end
 

@@ -233,10 +233,10 @@ class NebulumMarsRoversSDK
 
     private $_photo = null;
 
-    // Idiomatic facade: $client->photo()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Photo() (PHP method
-    // names are case-insensitive).
-    public function photo($data = null)
+    // Canonical facade: $client->Photo()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->photo()
+    // resolves here too.
+    public function Photo($data = null)
     {
         require_once __DIR__ . '/entity/photo_entity.php';
         if ($data === null) {

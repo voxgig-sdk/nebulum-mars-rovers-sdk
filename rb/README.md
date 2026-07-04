@@ -28,16 +28,14 @@ require_relative "NebulumMarsRovers_sdk"
 client = NebulumMarsRoversSDK.new
 ```
 
-### 2. List photos
+### 2. List photo records
 
 ```ruby
 begin
-  result = client.photo.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Photo records — iterate directly.
+  photos = client.Photo.list
+  photos.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.photo.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Photo record (raises on error).
+  photo = client.Photo.load({ "id" => "example_id" })
+  puts photo
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = NebulumMarsRoversSDK.test
+client = NebulumMarsRoversSDK.test({
+  "entity" => { "photo" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.photo.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+photo = client.Photo.load({ "id" => "test01" })
+puts photo
 ```
 
 ### Use a custom fetch function
@@ -239,7 +242,7 @@ API path: `/rovers/curiosity/photos`
 
 ### Photo
 
-Create an instance: `const photo = client.photo`
+Create an instance: `photo = client.Photo`
 
 #### Operations
 
@@ -261,14 +264,16 @@ Create an instance: `const photo = client.photo`
 
 #### Example: Load
 
-```ts
-const photo = await client.photo.load({ id: 'photo_id' })
+```ruby
+# load returns the bare Photo record (raises on error).
+photo = client.Photo.load({ "id" => "photo_id" })
 ```
 
 #### Example: List
 
-```ts
-const photos = await client.photo.list()
+```ruby
+# list returns an Array of Photo records (raises on error).
+photos = client.Photo.list
 ```
 
 
@@ -343,7 +348,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-photo = client.photo
+photo = client.Photo
 photo.load({ "id" => "example_id" })
 
 # photo.data_get now returns the loaded photo data

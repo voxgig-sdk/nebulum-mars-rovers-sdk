@@ -29,18 +29,16 @@ require_once 'nebulummarsrovers_sdk.php';
 $client = new NebulumMarsRoversSDK();
 ```
 
-### 2. List photos
+### 2. List photo records
 
 ```php
 try {
-    $result = $client->photo()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Photo records — iterate directly.
+    $photos = $client->Photo()->list();
+    foreach ($photos as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->photo()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Photo record (throws on error).
+    $photo = $client->Photo()->load(["id" => "example_id"]);
+    print_r($photo);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NebulumMarsRoversSDK::test();
+$client = NebulumMarsRoversSDK::test([
+    "entity" => ["photo" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->photo()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$photo = $client->Photo()->load(["id" => "test01"]);
+print_r($photo);
 ```
 
 ### Use a custom fetch function
@@ -244,7 +247,7 @@ API path: `/rovers/curiosity/photos`
 
 ### Photo
 
-Create an instance: `const photo = client.photo`
+Create an instance: `$photo = $client->Photo();`
 
 #### Operations
 
@@ -266,14 +269,16 @@ Create an instance: `const photo = client.photo`
 
 #### Example: Load
 
-```ts
-const photo = await client.photo.load({ id: 'photo_id' })
+```php
+// load() returns the bare Photo record (throws on error).
+$photo = $client->Photo()->load(["id" => "photo_id"]);
 ```
 
 #### Example: List
 
-```ts
-const photos = await client.photo.list()
+```php
+// list() returns an array of Photo records (throws on error).
+$photos = $client->Photo()->list();
 ```
 
 
@@ -348,7 +353,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$photo = $client->photo();
+$photo = $client->Photo();
 $photo->load(["id" => "example_id"]);
 
 // $photo->dataGet() now returns the loaded photo data

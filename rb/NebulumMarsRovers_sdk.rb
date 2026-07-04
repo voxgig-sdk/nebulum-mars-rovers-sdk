@@ -208,13 +208,7 @@ class NebulumMarsRoversSDK
   end
 
 
-  # Idiomatic facade: client.photo.list / client.photo.load({ "id" => ... })
-  def photo
-    require_relative 'entity/photo_entity'
-    @photo ||= PhotoEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.photo instead.
+  # Canonical facade: client.Photo.list / client.Photo.load({ "id" => ... })
   def Photo(data = nil)
     require_relative 'entity/photo_entity'
     PhotoEntity.new(self, data)

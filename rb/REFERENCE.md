@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## PhotoEntity
 
 ```ruby
-photo = client.photo
+photo = client.Photo
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ photo = client.photo
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.photo.list(nil)
+results = client.Photo.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -115,7 +115,7 @@ results = client.photo.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.photo.load({ "id" => "photo_id" })
+result = client.Photo.load({ "id" => "photo_id" })
 ```
 
 ### Common Methods

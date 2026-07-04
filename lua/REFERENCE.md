@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## PhotoEntity
 
 ```lua
-local photo = client:photo(nil)
+local photo = client:Photo(nil)
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ local photo = client:photo(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:photo():list()
+local results, err = client:Photo():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -112,7 +112,7 @@ local results, err = client:photo():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:photo():load({ id = "photo_id" })
+local result, err = client:Photo():load({ id = "photo_id" })
 ```
 
 ### Common Methods

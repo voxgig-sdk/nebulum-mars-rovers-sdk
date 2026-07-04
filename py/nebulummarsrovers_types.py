@@ -4,34 +4,35 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Photo:
-    camera: Optional[dict] = None
-    earth_date: Optional[str] = None
-    id: Optional[int] = None
-    img_src: Optional[str] = None
-    rover: Optional[dict] = None
-    sol: Optional[int] = None
+class Photo(TypedDict, total=False):
+    camera: dict
+    earth_date: str
+    id: int
+    img_src: str
+    rover: dict
+    sol: int
 
 
-@dataclass
-class PhotoLoadMatch:
+class PhotoLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class PhotoListMatch:
-    camera: Optional[dict] = None
-    earth_date: Optional[str] = None
-    id: Optional[int] = None
-    img_src: Optional[str] = None
-    rover: Optional[dict] = None
-    sol: Optional[int] = None
-
+class PhotoListMatch(TypedDict, total=False):
+    camera: dict
+    earth_date: str
+    id: int
+    img_src: str
+    rover: dict
+    sol: int

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## PhotoEntity
 
 ```python
-photo = client.photo
+photo = client.Photo()
 ```
 
 ### Fields
@@ -101,7 +101,9 @@ photo = client.photo
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.photo.list({})
+results = client.Photo().list({})
+for photo in results:
+    print(photo)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -109,7 +111,7 @@ results = client.photo.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.photo.load({"id": "photo_id"})
+result = client.Photo().load({"id": "photo_id"})
 ```
 
 ### Common Methods

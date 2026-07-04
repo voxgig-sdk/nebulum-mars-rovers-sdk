@@ -31,24 +31,28 @@ from nebulummarsrovers_sdk import NebulumMarsRoversSDK
 client = NebulumMarsRoversSDK()
 ```
 
-### 2. List photos
+### 2. List photo records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.photo.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    photos = client.Photo().list({})
+    for photo in photos:
+        print(photo)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a photo
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.photo.load({"id": "example_id"})
-    print(result)
+    photo = client.Photo().load({"id": "example_id"})
+    print(photo)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NebulumMarsRoversSDK.test()
 
-result = client.photo.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+photo = client.Photo().load({"id": "test01"})
+# photo contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -235,7 +240,7 @@ API path: `/rovers/curiosity/photos`
 
 ### Photo
 
-Create an instance: `const photo = client.photo`
+Create an instance: `photo = client.Photo()`
 
 #### Operations
 
@@ -257,14 +262,14 @@ Create an instance: `const photo = client.photo`
 
 #### Example: Load
 
-```ts
-const photo = await client.photo.load({ id: 'photo_id' })
+```python
+photo = client.Photo().load({"id": "photo_id"})
 ```
 
 #### Example: List
 
-```ts
-const photos = await client.photo.list()
+```python
+photos = client.Photo().list({})
 ```
 
 
@@ -338,7 +343,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-photo = client.photo
+photo = client.Photo()
 photo.load({"id": "example_id"})
 
 # photo.data_get() now returns the loaded photo data

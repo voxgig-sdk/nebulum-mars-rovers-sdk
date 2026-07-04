@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## PhotoEntity
 
 ```php
-$photo = $client->photo();
+$photo = $client->Photo();
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ $photo = $client->photo();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->photo()->list([]);
+$results = $client->Photo()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -114,7 +114,7 @@ $results = $client->photo()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->photo()->load(["id" => "photo_id"]);
+$result = $client->Photo()->load(["id" => "photo_id"]);
 ```
 
 ### Common Methods

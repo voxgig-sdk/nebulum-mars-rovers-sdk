@@ -26,9 +26,11 @@ import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
 
 const client = new NebulumMarsRoversSDK()
 
-// List all photos
-const photos = await client.photo.list()
-console.log(photos.data)
+// List all photos (returns Photo[])
+const photos = await client.Photo().list()
+for (const photo of photos) {
+  console.log(photo)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,12 +85,13 @@ from nebulummarsrovers_sdk import NebulumMarsRoversSDK
 
 client = NebulumMarsRoversSDK()
 
-# List all photos
-photos = client.photo.list()
-print(photos)
+# List all photos (returns a list, raises on error)
+photos = client.Photo().list({})
+for photo in photos:
+    print(photo)
 
-# Load a specific photo
-photo = client.photo.load({"id": "example_id"})
+# Load a specific photo (returns the record, raises on error)
+photo = client.Photo().load({"id": "example_id"})
 print(photo)
 ```
 
@@ -100,12 +103,12 @@ require_once 'nebulummarsrovers_sdk.php';
 
 $client = new NebulumMarsRoversSDK();
 
-// List all photos (throws on error)
-$photos = $client->photo()->list();
+// List all photos (returns an array; throws on error)
+$photos = $client->Photo()->list();
 print_r($photos);
 
-// Load a specific photo
-$photo = $client->photo()->load(["id" => "example_id"]);
+// Load a specific photo (returns the bare record; throws on error)
+$photo = $client->Photo()->load(["id" => "example_id"]);
 print_r($photo);
 ```
 
@@ -128,12 +131,12 @@ require_relative "NebulumMarsRovers_sdk"
 
 client = NebulumMarsRoversSDK.new
 
-# List all photos
-photos = client.photo.list
+# List all photos (returns an Array; raises on error)
+photos = client.Photo.list
 puts photos
 
-# Load a specific photo
-photo = client.photo.load({ "id" => "example_id" })
+# Load a specific photo (returns the bare record; raises on error)
+photo = client.Photo.load({ "id" => "example_id" })
 puts photo
 ```
 
@@ -145,11 +148,11 @@ local sdk = require("nebulum-mars-rovers_sdk")
 local client = sdk.new()
 
 -- List all photos
-local photos, err = client:photo():list()
+local photos, err = client:Photo():list()
 print(photos)
 
 -- Load a specific photo
-local photo, err = client:photo():load({ id = "example_id" })
+local photo, err = client:Photo():load({ id = "example_id" })
 print(photo)
 ```
 
@@ -162,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NebulumMarsRoversSDK.test()
-const result = await client.photo.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const photo = await client.Photo().load({ id: 1 })
+// photo is a bare Photo populated with mock data
+console.log(photo)
 ```
 
 ### Python
 
 ```python
 client = NebulumMarsRoversSDK.test()
-result = client.photo.load({"id": "test01"})
+photo = client.Photo().load({"id": "test01"})
+print(photo)
 ```
 
 ### PHP
 
 ```php
-$client = NebulumMarsRoversSDK::test();
-$result = $client->photo()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NebulumMarsRoversSDK::test([
+    "entity" => ["photo" => ["test01" => ["id" => "test01"]]],
+]);
+$photo = $client->Photo()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,15 +200,18 @@ result, err := client.Photo(nil).Load(
 ### Ruby
 
 ```ruby
-client = NebulumMarsRoversSDK.test
-result = client.photo.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NebulumMarsRoversSDK.test({
+  "entity" => { "photo" => { "test01" => { "id" => "test01" } } },
+})
+photo = client.Photo.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:photo():load({ id = "test01" })
+local result, err = client:Photo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -248,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

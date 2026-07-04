@@ -220,25 +220,15 @@ class NebulumMarsRoversSDK:
         }
 
 
-    @property
-    def photo(self):
-        """Idiomatic facade: client.photo.list() / client.photo.load({"id": ...})."""
-        from entity.photo_entity import PhotoEntity
-        cached = getattr(self, "_photo", None)
-        if cached is None:
-            cached = PhotoEntity(self, None)
-            self._photo = cached
-        return cached
-
-    def Photo(self, data=None):
-        # Deprecated: use client.photo instead.
+    def Photo(self, data=None) -> "PhotoEntity":
+        """Entity factory: client.Photo().list({}) / client.Photo().load({"id": ...})."""
         from entity.photo_entity import PhotoEntity
         return PhotoEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NebulumMarsRoversSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class NebulumMarsRoversSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.photo_entity import PhotoEntity

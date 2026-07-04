@@ -109,7 +109,7 @@ Alias for `NebulumMarsRoversSDK.test()`.
 ## PhotoEntity
 
 ```ts
-const photo = client.photo
+const photo = client.Photo()
 ```
 
 ### Fields
@@ -130,7 +130,7 @@ const photo = client.photo
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.photo.list()
+const results = await client.Photo().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -138,7 +138,7 @@ const results = await client.photo.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.photo.load({ id: 'photo_id' })
+const result = await client.Photo().load({ id: 'photo_id' })
 ```
 
 ### Common Methods
