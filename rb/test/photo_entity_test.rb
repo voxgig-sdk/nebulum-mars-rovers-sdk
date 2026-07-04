@@ -43,16 +43,14 @@ class PhotoEntityTest < Minitest::Test
     photo_ref01_ent = client.Photo(nil)
     photo_ref01_match = {}
 
-    photo_ref01_list_result, err = photo_ref01_ent.list(photo_ref01_match, nil)
-    assert_nil err
+    photo_ref01_list_result = photo_ref01_ent.list(photo_ref01_match, nil)
     assert photo_ref01_list_result.is_a?(Array)
 
     # LOAD
     photo_ref01_match_dt0 = {
       "id" => photo_ref01_data["id"],
     }
-    photo_ref01_data_dt0_loaded, err = photo_ref01_ent.load(photo_ref01_match_dt0, nil)
-    assert_nil err
+    photo_ref01_data_dt0_loaded = photo_ref01_ent.load(photo_ref01_match_dt0, nil)
     photo_ref01_data_dt0_load_result = Helpers.to_map(photo_ref01_data_dt0_loaded)
     assert !photo_ref01_data_dt0_load_result.nil?
     assert_equal photo_ref01_data_dt0_load_result["id"], photo_ref01_data["id"]
@@ -93,7 +91,6 @@ def photo_basic_setup(extra)
     "NEBULUMMARSROVERS_TEST_PHOTO_ENTID" => idmap,
     "NEBULUMMARSROVERS_TEST_LIVE" => "FALSE",
     "NEBULUMMARSROVERS_TEST_EXPLAIN" => "FALSE",
-    "NEBULUMMARSROVERS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def photo_basic_setup(extra)
   if env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NEBULUMMARSROVERS_APIKEY"],
       },
       extra || {},
     ])

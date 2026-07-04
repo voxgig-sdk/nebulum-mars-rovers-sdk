@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `NebulumMarsRoversSDK.test()`.
 ## PhotoEntity
 
 ```ts
-const photo = client.Photo()
+const photo = client.photo
 ```
 
 ### Fields
@@ -131,7 +130,7 @@ const photo = client.Photo()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Photo().list()
+const results = await client.photo.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -139,7 +138,7 @@ const results = await client.Photo().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Photo().load({ id: 'photo_id' })
+const result = await client.photo.load({ id: 'photo_id' })
 ```
 
 ### Common Methods

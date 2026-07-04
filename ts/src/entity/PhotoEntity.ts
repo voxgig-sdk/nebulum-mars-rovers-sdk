@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Photo,
+  PhotoLoadMatch,
+  PhotoListMatch,
+} from '../NebulumMarsRoversTypes'
 
 // TODO: needs Entity superclass
-class PhotoEntity extends NebulumMarsRoversEntityBase {
+class PhotoEntity extends NebulumMarsRoversEntityBase<Photo> {
 
   constructor(client: NebulumMarsRoversSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class PhotoEntity extends NebulumMarsRoversEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PhotoLoadMatch, ctrl?: Control): Promise<Photo> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class PhotoEntity extends NebulumMarsRoversEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Photo> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: PhotoListMatch, ctrl?: Control): Promise<Photo[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class PhotoEntity extends NebulumMarsRoversEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Photo[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

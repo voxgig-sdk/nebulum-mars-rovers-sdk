@@ -9,9 +9,12 @@ The TypeScript SDK for the NebulumMarsRovers API — a type-safe, entity-oriente
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/nebulum-mars-rovers
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NebulumMarsRoversSDK } from 'nebulum-mars-rovers'
+import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
 
-const client = new NebulumMarsRoversSDK({
-  apikey: process.env.NEBULUM-MARS-ROVERS_APIKEY,
-})
+const client = new NebulumMarsRoversSDK()
 ```
 
 ### 2. List photos
 
 ```ts
-const result = await client.Photo().list()
+const result = await client.photo.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -42,7 +43,7 @@ if (result.ok) {
 ### 3. Load a photo
 
 ```ts
-const result = await client.Photo().load({ id: 'example_id' })
+const result = await client.photo.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NebulumMarsRoversSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.photo.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new NebulumMarsRoversSDK({ apikey: '...' })
+const client = new NebulumMarsRoversSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.photo
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new NebulumMarsRoversSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -145,8 +145,7 @@ const client = new NebulumMarsRoversSDK({
 Create a `.env.local` file at the project root:
 
 ```
-NEBULUM-MARS-ROVERS_TEST_LIVE=TRUE
-NEBULUM-MARS-ROVERS_APIKEY=<your-key>
+NEBULUM_MARS_ROVERS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new NebulumMarsRoversSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new NebulumMarsRoversSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -283,7 +280,7 @@ API path: `/rovers/curiosity/photos`
 
 ### Photo
 
-Create an instance: `const photo = client.Photo()`
+Create an instance: `const photo = client.photo`
 
 #### Operations
 
@@ -306,13 +303,13 @@ Create an instance: `const photo = client.Photo()`
 #### Example: Load
 
 ```ts
-const photo = await client.Photo().load({ id: 'photo_id' })
+const photo = await client.photo.load({ id: 'photo_id' })
 ```
 
 #### Example: List
 
 ```ts
-const photos = await client.Photo().list()
+const photos = await client.photo.list()
 ```
 
 
@@ -373,7 +370,7 @@ nebulum-mars-rovers/
 Import the SDK from the package root:
 
 ```ts
-import { NebulumMarsRoversSDK } from 'nebulum-mars-rovers'
+import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
 ```
 
 ### Entity state
@@ -383,11 +380,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const photo = client.photo
+await photo.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// photo.data() now returns the loaded photo data
+// photo.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

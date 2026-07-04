@@ -50,16 +50,14 @@ class TestPhotoEntity:
         photo_ref01_ent = client.Photo(None)
         photo_ref01_match = {}
 
-        photo_ref01_list_result, err = photo_ref01_ent.list(photo_ref01_match, None)
-        assert err is None
+        photo_ref01_list_result = photo_ref01_ent.list(photo_ref01_match, None)
         assert isinstance(photo_ref01_list_result, list)
 
         # LOAD
         photo_ref01_match_dt0 = {
             "id": photo_ref01_data["id"],
         }
-        photo_ref01_data_dt0_loaded, err = photo_ref01_ent.load(photo_ref01_match_dt0, None)
-        assert err is None
+        photo_ref01_data_dt0_loaded = photo_ref01_ent.load(photo_ref01_match_dt0, None)
         photo_ref01_data_dt0_load_result = helpers.to_map(photo_ref01_data_dt0_loaded)
         assert photo_ref01_data_dt0_load_result is not None
         assert photo_ref01_data_dt0_load_result["id"] == photo_ref01_data["id"]
@@ -102,7 +100,6 @@ def _photo_basic_setup(extra):
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID": idmap,
         "NEBULUMMARSROVERS_TEST_LIVE": "FALSE",
         "NEBULUMMARSROVERS_TEST_EXPLAIN": "FALSE",
-        "NEBULUMMARSROVERS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _photo_basic_setup(extra):
     if env.get("NEBULUMMARSROVERS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NEBULUMMARSROVERS_APIKEY"),
             },
             extra or {},
         ])

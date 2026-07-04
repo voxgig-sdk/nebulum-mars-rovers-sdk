@@ -2,6 +2,8 @@
 
 import { PhotoEntity } from './entity/PhotoEntity'
 
+export type * from './NebulumMarsRoversTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class NebulumMarsRoversSDK {
 
 
 
+  _photo?: PhotoEntity
+
+  // Idiomatic facade: `client.photo.list()` / `client.photo.load({ id })`.
+  get photo(): PhotoEntity {
+    return (this._photo ??= new PhotoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.photo` instead. */
   Photo(data?: any) {
     const self = this
     return new PhotoEntity(self,data)

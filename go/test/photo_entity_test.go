@@ -135,7 +135,6 @@ func photoBasicSetup(extra map[string]any) *entityTestSetup {
 		"NEBULUMMARSROVERS_TEST_PHOTO_ENTID": idmap,
 		"NEBULUMMARSROVERS_TEST_LIVE":      "FALSE",
 		"NEBULUMMARSROVERS_TEST_EXPLAIN":   "FALSE",
-		"NEBULUMMARSROVERS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NEBULUMMARSROVERS_TEST_PHOTO_ENTID"])
@@ -146,7 +145,6 @@ func photoBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NEBULUMMARSROVERS_APIKEY"],
 			},
 			extra,
 		})

@@ -50,16 +50,14 @@ class PhotoEntityTest extends TestCase
         $photo_ref01_ent = $client->Photo(null);
         $photo_ref01_match = [];
 
-        [$photo_ref01_list_result, $err] = $photo_ref01_ent->list($photo_ref01_match, null);
-        $this->assertNull($err);
+        $photo_ref01_list_result = $photo_ref01_ent->list($photo_ref01_match, null);
         $this->assertIsArray($photo_ref01_list_result);
 
         // LOAD
         $photo_ref01_match_dt0 = [
             "id" => $photo_ref01_data["id"],
         ];
-        [$photo_ref01_data_dt0_loaded, $err] = $photo_ref01_ent->load($photo_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $photo_ref01_data_dt0_loaded = $photo_ref01_ent->load($photo_ref01_match_dt0, null);
         $photo_ref01_data_dt0_load_result = Helpers::to_map($photo_ref01_data_dt0_loaded);
         $this->assertNotNull($photo_ref01_data_dt0_load_result);
         $this->assertEquals($photo_ref01_data_dt0_load_result["id"], $photo_ref01_data["id"]);
@@ -96,7 +94,6 @@ function photo_basic_setup($extra)
         "NEBULUMMARSROVERS_TEST_PHOTO_ENTID" => $idmap,
         "NEBULUMMARSROVERS_TEST_LIVE" => "FALSE",
         "NEBULUMMARSROVERS_TEST_EXPLAIN" => "FALSE",
-        "NEBULUMMARSROVERS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function photo_basic_setup($extra)
     if ($env["NEBULUMMARSROVERS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["NEBULUMMARSROVERS_APIKEY"],
             ],
             $extra ?? [],
         ]);

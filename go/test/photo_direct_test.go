@@ -175,14 +175,12 @@ func photoDirectSetup(mockres any) *photoDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NEBULUMMARSROVERS_TEST_PHOTO_ENTID": map[string]any{},
 		"NEBULUMMARSROVERS_TEST_LIVE":    "FALSE",
-		"NEBULUMMARSROVERS_APIKEY":       "NONE",
 	})
 
 	live := env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NEBULUMMARSROVERS_APIKEY"],
 		}
 		client := sdk.NewNebulumMarsRoversSDK(mergedOpts)
 

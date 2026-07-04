@@ -245,6 +245,9 @@ func (sdk *NebulumMarsRoversSDK) Direct(fetchargs map[string]any) (map[string]an
 }
 
 
+// Photo returns a Photo entity bound to this client.
+// Idiomatic usage: client.Photo(nil).List(nil, nil) or
+// client.Photo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NebulumMarsRoversSDK) Photo(data map[string]any) NebulumMarsRoversEntity {
 	return NewPhotoEntityFunc(sdk, data)
 }

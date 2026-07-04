@@ -117,14 +117,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NEBULUMMARSROVERS_TEST_PHOTO_ENTID': {},
     'NEBULUMMARSROVERS_TEST_LIVE': 'FALSE',
-    'NEBULUMMARSROVERS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NEBULUMMARSROVERS_TEST_LIVE
 
   if (live) {
     const client = new NebulumMarsRoversSDK({
-      apikey: env.NEBULUMMARSROVERS_APIKEY,
     })
 
     let idmap: any = env['NEBULUMMARSROVERS_TEST_PHOTO_ENTID']

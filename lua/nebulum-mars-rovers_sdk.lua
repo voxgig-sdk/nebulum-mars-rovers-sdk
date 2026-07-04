@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:photo():list() / client:photo():load({ id = ... })
+function NebulumMarsRoversSDK:photo(data)
+  local EntityMod = require("entity.photo_entity")
+  if data == nil then
+    if self._photo == nil then
+      self._photo = EntityMod.new(self, nil)
+    end
+    return self._photo
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:photo() instead.
 function NebulumMarsRoversSDK:Photo(data)
   local EntityMod = require("entity.photo_entity")
   return EntityMod.new(self, data)

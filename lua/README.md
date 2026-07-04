@@ -9,12 +9,9 @@ The Lua SDK for the NebulumMarsRovers API — an entity-oriented client using Lu
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-nebulum-mars-rovers
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("nebulum-mars-rovers_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("NEBULUM-MARS-ROVERS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List photos
 
 ```lua
-local result, err = client:Photo():list()
+local result, err = client:photo():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a photo
 
 ```lua
-local result, err = client:Photo():load({ id = "example_id" })
+local result, err = client:photo():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:NebulumMarsRovers():load({ id = "test01" })
+local result, err = client:photo():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +129,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-NEBULUM-MARS-ROVERS_TEST_LIVE=TRUE
-NEBULUM-MARS-ROVERS_APIKEY=<your-key>
+NEBULUM_MARS_ROVERS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -240,7 +233,7 @@ API path: `/rovers/curiosity/photos`
 
 ### Photo
 
-Create an instance: `const photo = client.Photo()`
+Create an instance: `const photo = client.photo`
 
 #### Operations
 
@@ -263,13 +256,13 @@ Create an instance: `const photo = client.Photo()`
 #### Example: Load
 
 ```ts
-const photo = await client.Photo().load({ id: 'photo_id' })
+const photo = await client.photo.load({ id: 'photo_id' })
 ```
 
 #### Example: List
 
 ```ts
-const photos = await client.Photo().list()
+const photos = await client.photo.list()
 ```
 
 
@@ -344,11 +337,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local photo = client:photo()
+photo:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- photo:data_get() now returns the loaded photo data
+-- photo:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

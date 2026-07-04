@@ -45,6 +45,7 @@ class PhotoEntity
     end
   end
 
+  # @return [Photo, Hash] the current Photo data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PhotoEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Photo fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Photo.
+  #
+  # @param reqmatch [PhotoLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Photo, Hash] the loaded Photo; raises NebulumMarsRoversError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class PhotoEntity
 
 
   
+  # List Photo items matching the given filter.
+  #
+  # @param reqmatch [PhotoListMatch, Hash, nil] match filter (any subset of Photo fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Photo>, Array] the matching Photo items; raises NebulumMarsRoversError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
