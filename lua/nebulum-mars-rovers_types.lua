@@ -18,6 +18,12 @@
 ---@field id number
 
 ---@class PhotoListMatch
+---@field camera? table
+---@field earth_date? string
+---@field id? number
+---@field img_src? string
+---@field rover? table
+---@field sol? number
 
 local M = {}
 

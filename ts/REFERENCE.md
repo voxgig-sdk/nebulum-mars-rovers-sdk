@@ -116,12 +116,12 @@ const photo = client.Photo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `Record<string, any>` | No |  |
+| `earth_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `img_src` | `string` | No |  |
+| `rover` | `Record<string, any>` | No |  |
+| `sol` | `number` | No |  |
 
 ### Operations
 
@@ -138,7 +138,7 @@ const results = await client.Photo().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Photo().load({ id: 'photo_id' })
+const result = await client.Photo().load({ id: 1 })
 ```
 
 ### Common Methods

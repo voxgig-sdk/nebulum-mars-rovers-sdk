@@ -29,7 +29,7 @@ class PhotoLoadMatch
     public int $id;
 }
 
-/** Match filter for Photo#list (any subset of Photo fields). */
+/** Request payload for Photo#list. */
 class PhotoListMatch
 {
     public ?array $camera = null;

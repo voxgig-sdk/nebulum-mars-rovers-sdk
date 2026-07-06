@@ -8,7 +8,7 @@ Complete API reference for the NebulumMarsRovers Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'nebulum-mars-rovers_sdk'
+require_relative 'NebulumMarsRovers_sdk'
 
 client = NebulumMarsRoversSDK.new(options)
 ```
@@ -93,21 +93,21 @@ photo = client.Photo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `Hash` | No |  |
+| `earth_date` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `img_src` | `String` | No |  |
+| `rover` | `Hash` | No |  |
+| `sol` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Photo.list(nil)
+results = client.Photo.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

@@ -221,7 +221,7 @@ class NebulumMarsRoversSDK:
 
 
     def Photo(self, data=None) -> "PhotoEntity":
-        """Entity factory: client.Photo().list({}) / client.Photo().load({"id": ...})."""
+        """Entity factory: client.Photo().list() / client.Photo().load({"id": ...})."""
         from entity.photo_entity import PhotoEntity
         return PhotoEntity(self, data)
 

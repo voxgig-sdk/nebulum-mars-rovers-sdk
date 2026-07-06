@@ -23,8 +23,7 @@ type PhotoLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// PhotoListMatch mirrors the photo fields as an all-optional match
-// filter (Go analog of Partial<Photo>).
+// PhotoListMatch is the typed request payload for Photo.ListTyped.
 type PhotoListMatch struct {
 	Camera *map[string]any `json:"camera,omitempty"`
 	EarthDate *string `json:"earth_date,omitempty"`

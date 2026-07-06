@@ -8,7 +8,7 @@ Complete API reference for the NebulumMarsRovers PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/nebulum-mars-rovers_sdk.php';
+require_once __DIR__ . '/nebulummarsrovers_sdk.php';
 
 $client = new NebulumMarsRoversSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = NebulumMarsRoversSDK::test();
 
 Create a new `PhotoEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NebulumMarsRoversUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,21 +92,21 @@ $photo = $client->Photo();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `array` | No |  |
+| `earth_date` | `string` | No |  |
+| `id` | `int` | No |  |
+| `img_src` | `string` | No |  |
+| `rover` | `array` | No |  |
+| `sol` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Photo()->list([]);
+$results = $client->Photo()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -119,19 +119,19 @@ $result = $client->Photo()->load(["id" => "photo_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -140,7 +140,7 @@ Set the entity match criteria.
 Create a new `PhotoEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

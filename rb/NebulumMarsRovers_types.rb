@@ -46,7 +46,7 @@ PhotoLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Photo#list (any subset of Photo fields).
+# Request payload for Photo#list.
 #
 # @!attribute [rw] camera
 #   @return [Hash, nil]

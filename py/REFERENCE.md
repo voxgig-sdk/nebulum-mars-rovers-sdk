@@ -8,7 +8,7 @@ Complete API reference for the NebulumMarsRovers Python SDK.
 ### Constructor
 
 ```python
-from nebulum-mars-rovers_sdk import NebulumMarsRoversSDK
+from nebulummarsrovers_sdk import NebulumMarsRoversSDK
 
 client = NebulumMarsRoversSDK(options)
 ```
@@ -87,21 +87,21 @@ photo = client.Photo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `dict` | No |  |
+| `earth_date` | `str` | No |  |
+| `id` | `int` | No |  |
+| `img_src` | `str` | No |  |
+| `rover` | `dict` | No |  |
+| `sol` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Photo().list({})
+results = client.Photo().list()
 for photo in results:
     print(photo)
 ```

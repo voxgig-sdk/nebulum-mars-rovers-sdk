@@ -90,12 +90,12 @@ local photo = client:Photo(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `table` | No |  |
+| `earth_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `img_src` | `string` | No |  |
+| `rover` | `table` | No |  |
+| `sol` | `number` | No |  |
 
 ### Operations
 

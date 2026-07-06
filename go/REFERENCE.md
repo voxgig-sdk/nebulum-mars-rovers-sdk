@@ -97,12 +97,12 @@ photo := client.Photo(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `camera` | ``$OBJECT`` | No |  |
-| `earth_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `img_src` | ``$STRING`` | No |  |
-| `rover` | ``$OBJECT`` | No |  |
-| `sol` | ``$INTEGER`` | No |  |
+| `camera` | `map[string]any` | No |  |
+| `earth_date` | `string` | No |  |
+| `id` | `int` | No |  |
+| `img_src` | `string` | No |  |
+| `rover` | `map[string]any` | No |  |
+| `sol` | `int` | No |  |
 
 ### Operations
 
