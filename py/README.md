@@ -56,7 +56,7 @@ except Exception as err:
 
 ```python
 try:
-    photo = client.Photo().load({"id": "example_id"})
+    photo = client.Photo().load({"id": 1})
     print(photo)
 except Exception as err:
     print(f"load failed: {err}")
@@ -296,7 +296,7 @@ Create an instance: `photo = client.Photo()`
 #### Example: Load
 
 ```python
-photo = client.Photo().load({"id": "photo_id"})
+photo = client.Photo().load({"id": 1})
 ```
 
 #### Example: List

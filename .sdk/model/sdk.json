@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -354,14 +351,17 @@
           "url": "https://rovers.nebulum.one/"
         },
         "description": "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions. Developers can retrieve images based on unique photo IDs, Earth dates, or Martian sols. This API offers efficient access to fascinating Mars exploration data for enthusiasts and researchers.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://rovers.nebulum.one/api/v1"
           }
         ],
+        "summary": "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions.",
         "title": "Nebulum Mars Rovers API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://rovers.nebulum.one"
       },
       "option": {},
       "target": {
@@ -414,6 +414,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -464,6 +467,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

@@ -49,7 +49,7 @@ end
 ```ruby
 begin
   # load returns the bare Photo record (raises on error).
-  photo = client.Photo.load({ "id" => "example_id" })
+  photo = client.Photo.load({ "id" => 1 })
   puts photo
 rescue => err
   warn "load failed: #{err}"
@@ -294,7 +294,7 @@ Create an instance: `photo = client.Photo`
 
 ```ruby
 # load returns the bare Photo record (raises on error).
-photo = client.Photo.load({ "id" => "photo_id" })
+photo = client.Photo.load({ "id" => 1 })
 ```
 
 #### Example: List

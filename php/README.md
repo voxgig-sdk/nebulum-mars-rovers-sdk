@@ -50,7 +50,7 @@ try {
 ```php
 try {
     // load() returns the bare Photo record (throws on error).
-    $photo = $client->Photo()->load(["id" => "example_id"]);
+    $photo = $client->Photo()->load(["id" => 1]);
     print_r($photo);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -304,7 +304,7 @@ Create an instance: `$photo = $client->Photo();`
 
 ```php
 // load() returns the bare Photo record (throws on error).
-$photo = $client->Photo()->load(["id" => "photo_id"]);
+$photo = $client->Photo()->load(["id" => 1]);
 ```
 
 #### Example: List

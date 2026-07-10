@@ -310,7 +310,7 @@ Create an instance: `photo := client.Photo(nil)`
 #### Example: Load
 
 ```go
-photo, err := client.Photo(nil).Load(map[string]any{"id": "photo_id"}, nil)
+photo, err := client.Photo(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }

@@ -50,7 +50,7 @@ end
 ### 3. Load a photo
 
 ```lua
-local photo, err = client:Photo():load({ id = "example_id" })
+local photo, err = client:Photo():load({ id = 1 })
 if err then error(err) end
 print(photo)
 ```
@@ -282,7 +282,7 @@ Create an instance: `local photo = client:Photo(nil)`
 #### Example: Load
 
 ```lua
-local photo, err = client:Photo():load({ id = "photo_id" })
+local photo, err = client:Photo():load({ id = 1 })
 ```
 
 #### Example: List

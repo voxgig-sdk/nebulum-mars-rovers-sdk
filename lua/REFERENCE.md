@@ -112,7 +112,7 @@ local results, err = client:Photo():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Photo():load({ id = "photo_id" })
+local result, err = client:Photo():load({ id = 1 })
 ```
 
 ### Common Methods

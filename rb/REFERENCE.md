@@ -115,7 +115,7 @@ results = client.Photo.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Photo.load({ "id" => "photo_id" })
+result = client.Photo.load({ "id" => 1 })
 ```
 
 ### Common Methods

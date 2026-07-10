@@ -111,7 +111,7 @@ for photo in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Photo().load({"id": "photo_id"})
+result = client.Photo().load({"id": 1})
 ```
 
 ### Common Methods

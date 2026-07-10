@@ -16,9 +16,9 @@ main: {
           url: "https://rovers.nebulum.one/api/v1"
         }
       ]
+      summary: "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions."
       title: "Nebulum Mars Rovers API"
       version: "1.0.0"
+      website: "https://rovers.nebulum.one"
     }
   }
-}
-
