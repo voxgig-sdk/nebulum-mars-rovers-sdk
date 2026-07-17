@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- NebulumMarsRovers SDK exists test
 
 local sdk = require("nebulum-mars-rovers_sdk")
 
