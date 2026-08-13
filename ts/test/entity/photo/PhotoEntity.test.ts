@@ -26,8 +26,8 @@ import {
 describe('PhotoEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NEBULUMMARSROVERS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NEBULUMMARSROVERS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NEBULUM_MARS_ROVERS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NEBULUM_MARS_ROVERS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = NebulumMarsRoversSDK.test()
@@ -63,13 +63,13 @@ describe('PhotoEntity', async () => {
     const photo_ref01_ent = client.Photo()
     const photo_ref01_match: any = {}
 
-    const photo_ref01_list = await photo_ref01_ent.list(photo_ref01_match)
+    const photo_ref01_list = (await photo_ref01_ent.list(photo_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const photo_ref01_match_dt0: any = {}
     photo_ref01_match_dt0.id = photo_ref01_data.id
-    const photo_ref01_data_dt0 = await photo_ref01_ent.load(photo_ref01_match_dt0)
+    const photo_ref01_data_dt0 = (await photo_ref01_ent.load(photo_ref01_match_dt0)).data()
     assert(photo_ref01_data_dt0.id === photo_ref01_data.id)
 
 

@@ -70,7 +70,7 @@ describe("PhotoEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set NEBULUMMARSROVERS_TEST_PHOTO_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -97,7 +97,7 @@ describe("PhotoEntity", function()
     }
     local photo_ref01_data_dt0_loaded, err = photo_ref01_ent:load(photo_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local photo_ref01_data_dt0_load_result = helpers.to_map(photo_ref01_data_dt0_loaded)
+    local photo_ref01_data_dt0_load_result = helpers.to_map(type(photo_ref01_data_dt0_loaded) == 'table' and photo_ref01_data_dt0_loaded.data_get and photo_ref01_data_dt0_loaded:data_get() or photo_ref01_data_dt0_loaded)
     assert.is_not_nil(photo_ref01_data_dt0_load_result)
     assert.are.equal(photo_ref01_data_dt0_load_result["id"], photo_ref01_data["id"])
 
@@ -136,22 +136,22 @@ function photo_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("NEBULUMMARSROVERS_TEST_PHOTO_ENTID")
+  local entid_env_raw = os.getenv("NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["NEBULUMMARSROVERS_TEST_PHOTO_ENTID"] = idmap,
-    ["NEBULUMMARSROVERS_TEST_LIVE"] = "FALSE",
-    ["NEBULUMMARSROVERS_TEST_EXPLAIN"] = "FALSE",
+    ["NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID"] = idmap,
+    ["NEBULUM_MARS_ROVERS_TEST_LIVE"] = "FALSE",
+    ["NEBULUM_MARS_ROVERS_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["NEBULUMMARSROVERS_TEST_PHOTO_ENTID"])
+    env["NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE" then
+  if env["NEBULUM_MARS_ROVERS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -160,13 +160,13 @@ function photo_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE"
+  local live = env["NEBULUM_MARS_ROVERS_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["NEBULUMMARSROVERS_TEST_EXPLAIN"] == "TRUE",
+    explain = env["NEBULUM_MARS_ROVERS_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

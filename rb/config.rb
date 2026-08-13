@@ -98,6 +98,7 @@ module NebulumMarsRoversConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rovers/curiosity/photos",
                   "parts" => [
@@ -113,7 +114,7 @@ module NebulumMarsRoversConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.photos`",
                   },
                   "index$" => 0,
                 },
@@ -141,6 +142,7 @@ module NebulumMarsRoversConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rovers/perseverance/photos",
                   "parts" => [
@@ -156,7 +158,7 @@ module NebulumMarsRoversConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.photos`",
                   },
                   "index$" => 1,
                 },
@@ -183,6 +185,7 @@ module NebulumMarsRoversConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/photos/{id}",
                   "parts" => [

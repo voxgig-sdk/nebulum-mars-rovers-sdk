@@ -97,6 +97,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rovers/curiosity/photos",
                 ["parts"] = {
@@ -112,7 +113,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.photos`",
                 },
                 ["index$"] = 0,
               },
@@ -140,6 +141,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rovers/perseverance/photos",
                 ["parts"] = {
@@ -155,7 +157,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.photos`",
                 },
                 ["index$"] = 1,
               },
@@ -182,6 +184,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/photos/{id}",
                 ["parts"] = {

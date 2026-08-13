@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from nebulummarsrovers_sdk.utility.voxgig_struct import voxgig_struct as vs
 from nebulummarsrovers_sdk import NebulumMarsRoversSDK
-from core import helpers
+from nebulummarsrovers_sdk.core import helpers
 from test import runner
 
 
@@ -102,11 +102,11 @@ def _photo_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "NEBULUMMARSROVERS_TEST_PHOTO_ENTID": {},
-        "NEBULUMMARSROVERS_TEST_LIVE": "FALSE",
+        "NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID": {},
+        "NEBULUM_MARS_ROVERS_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("NEBULUMMARSROVERS_TEST_LIVE") == "TRUE"
+    live = env.get("NEBULUM_MARS_ROVERS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

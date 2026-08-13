@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'NebulumMarsRovers',
   }
 
 
@@ -127,6 +127,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/rovers/curiosity/photos",
               "parts": [
@@ -142,7 +143,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.photos`"
               },
               "index$": 0
             },
@@ -170,6 +171,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/rovers/perseverance/photos",
               "parts": [
@@ -185,7 +187,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.photos`"
               },
               "index$": 1
             }
@@ -212,6 +214,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/photos/{id}",
               "parts": [

@@ -23,8 +23,8 @@ module NebulumMarsRoversTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("NEBULUMMARSROVERS_TEST_LIVE")
-    override = getenv("NEBULUMMARSROVERS_TEST_OVERRIDE")
+    live = getenv("NEBULUM_MARS_ROVERS_TEST_LIVE")
+    override = getenv("NEBULUM_MARS_ROVERS_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module NebulumMarsRoversTestRunner
       end
     end
 
-    explain = getenv("NEBULUMMARSROVERS_TEST_EXPLAIN")
-    m["NEBULUMMARSROVERS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("NEBULUM_MARS_ROVERS_TEST_EXPLAIN")
+    m["NEBULUM_MARS_ROVERS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

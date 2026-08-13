@@ -19,11 +19,15 @@ import {
 describe('PhotoDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when NEBULUMMARSROVERS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('NEBULUMMARSROVERS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when NEBULUM_MARS_ROVERS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('NEBULUM_MARS_ROVERS_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new NebulumMarsRoversSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -115,17 +119,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'NEBULUMMARSROVERS_TEST_PHOTO_ENTID': {},
-    'NEBULUMMARSROVERS_TEST_LIVE': 'FALSE',
+    'NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID': {},
+    'NEBULUM_MARS_ROVERS_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.NEBULUMMARSROVERS_TEST_LIVE
+  const live = 'TRUE' === env.NEBULUM_MARS_ROVERS_TEST_LIVE
 
   if (live) {
     const client = new NebulumMarsRoversSDK({
     })
 
-    let idmap: any = env['NEBULUMMARSROVERS_TEST_PHOTO_ENTID']
+    let idmap: any = env['NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

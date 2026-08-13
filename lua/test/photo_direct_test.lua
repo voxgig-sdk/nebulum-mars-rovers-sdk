@@ -113,11 +113,11 @@ function photo_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["NEBULUMMARSROVERS_TEST_PHOTO_ENTID"] = {},
-    ["NEBULUMMARSROVERS_TEST_LIVE"] = "FALSE",
+    ["NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID"] = {},
+    ["NEBULUM_MARS_ROVERS_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["NEBULUMMARSROVERS_TEST_LIVE"] == "TRUE"
+  local live = env["NEBULUM_MARS_ROVERS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

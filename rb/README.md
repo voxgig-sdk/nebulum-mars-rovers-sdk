@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Photo record (raises on error).
+  # load returns the ENTITY — call data_get for the Photo record (raises on error).
   photo = client.Photo.load({ "id" => 1 })
   puts photo
 rescue => err
@@ -134,7 +134,8 @@ client = NebulumMarsRoversSDK.test({
   "entity" => { "photo" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 photo = client.Photo.list()
 puts photo
 ```
@@ -293,7 +294,7 @@ Create an instance: `photo = client.Photo`
 #### Example: Load
 
 ```ruby
-# load returns the bare Photo record (raises on error).
+# load returns the ENTITY — call data_get for the Photo record (raises on error).
 photo = client.Photo.load({ "id" => 1 })
 ```
 

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# NebulumMarsRovers SDK exists test
 
 import pytest
 from nebulummarsrovers_sdk import NebulumMarsRoversSDK

@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Photo record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Photo record (throws on error).
     $photo = $client->Photo()->load(["id" => 1]);
     print_r($photo);
 } catch (\Throwable $err) {
@@ -140,7 +140,8 @@ $client = NebulumMarsRoversSDK::test([
     "entity" => ["photo" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $photo = $client->Photo()->list();
 print_r($photo);
 ```
@@ -240,7 +241,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -303,7 +304,7 @@ Create an instance: `$photo = $client->Photo();`
 #### Example: Load
 
 ```php
-// load() returns the bare Photo record (throws on error).
+// load() returns the ENTITY — call data_get() for the Photo record (throws on error).
 $photo = $client->Photo()->load(["id" => 1]);
 ```
 

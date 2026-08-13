@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NebulumMarsRoversSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NebulumMarsRoversSDK.test({
+  entity: {
+    photo: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const photos = await client.Photo().list()
-// photos is an array of bare Photo records populated with mock data
+// photos is an array of Photo entities, populated with mock data
+// — call photos[0].data() for the record itself
 console.log(photos)
 ```
 
@@ -110,7 +119,7 @@ import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
 
 const client = new NebulumMarsRoversSDK()
 
-// List all photos (returns Photo[])
+// List all photos (returns PhotoEntity[] — .data() for the record)
 const photos = await client.Photo().list()
 for (const photo of photos) {
   console.log(photo)
@@ -191,7 +200,7 @@ $client = new NebulumMarsRoversSDK();
 $photos = $client->Photo()->list();
 print_r($photos);
 
-// Load a specific photo (returns the bare record; throws on error)
+// Load a specific photo (returns the ENTITY; call data_get() for the record; throws on error)
 $photo = $client->Photo()->load(["id" => 1]);
 print_r($photo);
 ```
@@ -222,7 +231,7 @@ client = NebulumMarsRoversSDK.new
 photos = client.Photo.list
 puts photos
 
-# Load a specific photo (returns the bare record; raises on error)
+# Load a specific photo (returns the ENTITY; call data_get for the record)
 photo = client.Photo.load({ "id" => 1 })
 puts photo
 ```
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://rovers.nebulum.one/](https://rovers.nebulum.one/)
 

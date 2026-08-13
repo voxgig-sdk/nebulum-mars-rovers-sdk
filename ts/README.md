@@ -35,7 +35,9 @@ const client = new NebulumMarsRoversSDK()
 
 ### 2. List photo records
 
-`list()` resolves to an array of Photo objects — iterate it directly:
+`list()` resolves to an array of Photo ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const photos = await client.Photo().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = NebulumMarsRoversSDK.test()
 
 const photo = await client.Photo().list()
-// photo is a bare entity populated with mock response data
+// photo is the entity, populated with mock response data
+// — call photo.data() for the record itself
 console.log(photo)
 ```
 

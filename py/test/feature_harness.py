@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NebulumMarsRoversControl
-from core.error import NebulumMarsRoversError
-from core.result import NebulumMarsRoversResult
-from core.spec import NebulumMarsRoversSpec
+from nebulummarsrovers_sdk.config import make_config
+from nebulummarsrovers_sdk.features import _make_feature
+from nebulummarsrovers_sdk.core.control import NebulumMarsRoversControl
+from nebulummarsrovers_sdk.core.error import NebulumMarsRoversError
+from nebulummarsrovers_sdk.core.result import NebulumMarsRoversResult
+from nebulummarsrovers_sdk.core.spec import NebulumMarsRoversSpec
 
 
 # True when this SDK was generated with the named feature.

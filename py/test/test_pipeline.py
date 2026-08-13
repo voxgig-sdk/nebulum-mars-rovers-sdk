@@ -16,11 +16,11 @@
 import pytest
 
 from nebulummarsrovers_sdk import NebulumMarsRoversSDK
-from core.error import NebulumMarsRoversError
-from core.result import NebulumMarsRoversResult
-from core.response import NebulumMarsRoversResponse
-from core.spec import NebulumMarsRoversSpec
-from feature.base_feature import NebulumMarsRoversBaseFeature
+from nebulummarsrovers_sdk.core.error import NebulumMarsRoversError
+from nebulummarsrovers_sdk.core.result import NebulumMarsRoversResult
+from nebulummarsrovers_sdk.core.response import NebulumMarsRoversResponse
+from nebulummarsrovers_sdk.core.spec import NebulumMarsRoversSpec
+from nebulummarsrovers_sdk.feature.base_feature import NebulumMarsRoversBaseFeature
 
 
 def _client():

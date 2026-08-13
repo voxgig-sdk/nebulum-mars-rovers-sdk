@@ -11,9 +11,11 @@ guide: {
     }
     path: "/rovers/curiosity/photos": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.photos`")|top
     }
     path: "/rovers/perseverance/photos": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.photos`")|top
     }
   }
 

@@ -103,6 +103,7 @@ class NebulumMarsRoversConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rovers/curiosity/photos',
                   'parts' => [
@@ -118,7 +119,7 @@ class NebulumMarsRoversConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.photos`',
                   ],
                   'index$' => 0,
                 ],
@@ -146,6 +147,7 @@ class NebulumMarsRoversConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/rovers/perseverance/photos',
                   'parts' => [
@@ -161,7 +163,7 @@ class NebulumMarsRoversConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.photos`',
                   ],
                   'index$' => 1,
                 ],
@@ -188,6 +190,7 @@ class NebulumMarsRoversConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/photos/{id}',
                   'parts' => [

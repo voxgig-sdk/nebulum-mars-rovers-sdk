@@ -119,11 +119,11 @@ function photo_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "NEBULUMMARSROVERS_TEST_PHOTO_ENTID" => [],
-        "NEBULUMMARSROVERS_TEST_LIVE" => "FALSE",
+        "NEBULUM_MARS_ROVERS_TEST_PHOTO_ENTID" => [],
+        "NEBULUM_MARS_ROVERS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["NEBULUMMARSROVERS_TEST_LIVE"] === "TRUE";
+    $live = $env["NEBULUM_MARS_ROVERS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

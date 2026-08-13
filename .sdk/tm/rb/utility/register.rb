@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ NebulumMarsRoversUtility.registrar = ->(u) {
   u.prepare_params = NebulumMarsRoversUtilities::PrepareParams
   u.prepare_path = NebulumMarsRoversUtilities::PreparePath
   u.prepare_query = NebulumMarsRoversUtilities::PrepareQuery
+  u.graphql_body = NebulumMarsRoversUtilities::GraphqlBody
+  u.graphql_errors = NebulumMarsRoversUtilities::GraphqlErrors
   u.result_basic = NebulumMarsRoversUtilities::ResultBasic
   u.result_body = NebulumMarsRoversUtilities::ResultBody
   u.result_headers = NebulumMarsRoversUtilities::ResultHeaders

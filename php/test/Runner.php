@@ -43,8 +43,8 @@ class NebulumMarsRoversTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('NEBULUMMARSROVERS_TEST_LIVE');
-        $override = self::getenv('NEBULUMMARSROVERS_TEST_OVERRIDE');
+        $live = self::getenv('NEBULUM_MARS_ROVERS_TEST_LIVE');
+        $override = self::getenv('NEBULUM_MARS_ROVERS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class NebulumMarsRoversTestRunner
             }
         }
 
-        $explain = self::getenv('NEBULUMMARSROVERS_TEST_EXPLAIN');
+        $explain = self::getenv('NEBULUM_MARS_ROVERS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['NEBULUMMARSROVERS_TEST_EXPLAIN'] = $explain;
+            $m['NEBULUM_MARS_ROVERS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;
