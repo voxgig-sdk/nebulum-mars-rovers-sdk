@@ -23,8 +23,8 @@ class NebulumMarsRoversSDK:
         utility = NebulumMarsRoversUtility()
         self._utility = utility
 
-        from nebulummarsrovers_sdk.config import make_config
-        config = make_config()
+        from nebulummarsrovers_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

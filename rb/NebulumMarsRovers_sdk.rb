@@ -28,7 +28,7 @@ class NebulumMarsRoversSDK
     utility = NebulumMarsRoversUtility.new
     @_utility = utility
 
-    config = NebulumMarsRoversConfig.make_config
+    config = NebulumMarsRoversConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

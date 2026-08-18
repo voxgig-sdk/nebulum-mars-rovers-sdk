@@ -40,7 +40,7 @@ class NebulumMarsRoversSDK
         $utility = new NebulumMarsRoversUtility();
         $this->_utility = $utility;
 
-        $config = NebulumMarsRoversConfig::make_config();
+        $config = NebulumMarsRoversConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

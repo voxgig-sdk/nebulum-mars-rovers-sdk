@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://rovers.nebulum.one/api/v1',
+    base: "https://rovers.nebulum.one/api/v1",
 
     headers: {
       "content-type": "application/json"
@@ -55,46 +55,28 @@ class Config {
     "photo": {
       "fields": [
         {
-          "active": true,
           "name": "camera",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "earth_date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "id",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "img_src",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "rover",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "sol",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 5
+          "type": "`$INTEGER`"
         }
       ],
       "name": "photo",
@@ -104,25 +86,20 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "2015-06-03",
                     "kind": "query",
                     "name": "earth_date",
                     "orig": "earth_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 3718,
                     "kind": "query",
                     "name": "sol",
                     "orig": "sol",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -144,29 +121,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.photos`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "2025-11-06",
                     "kind": "query",
                     "name": "earth_date",
                     "orig": "earth_date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 1676,
                     "kind": "query",
                     "name": "sol",
                     "orig": "sol",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -188,29 +159,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.photos`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": 878,
                     "kind": "param",
                     "name": "id",
                     "orig": "id",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "index$": 0
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -229,11 +195,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
