@@ -6,7 +6,7 @@ The Golang SDK for the NebulumMarsRovers API — an entity-oriented client using
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Photo(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -270,11 +270,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"camera"` |  |
-| `"earth_date"` |  |
-| `"id"` |  |
-| `"img_src"` |  |
+| `"earth_date"` | Earth date when the photo was taken |
+| `"id"` | Unique identifier for the photo |
+| `"img_src"` | URL to the image file |
 | `"rover"` |  |
-| `"sol"` |  |
+| `"sol"` | Martian sol (day) when the photo was taken |
 
 Operations: List, Load.
 
@@ -301,11 +301,11 @@ Create an instance: `photo := client.Photo(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `camera` | `map[string]any` |  |
-| `earth_date` | `string` |  |
-| `id` | `int` |  |
-| `img_src` | `string` |  |
+| `earth_date` | `string` | Earth date when the photo was taken |
+| `id` | `int` | Unique identifier for the photo |
+| `img_src` | `string` | URL to the image file |
 | `rover` | `map[string]any` |  |
-| `sol` | `int` |  |
+| `sol` | `int` | Martian sol (day) when the photo was taken |
 
 #### Example: Load
 

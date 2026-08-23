@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "NebulumMarsRovers",
+            "slug": "nebulum-mars-rovers",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -54,14 +57,17 @@ def make_config():
           },
           {
             "name": "earth_date",
+            "short": "Earth date when the photo was taken",
             "type": "`$STRING`",
           },
           {
             "name": "id",
+            "short": "Unique identifier for the photo",
             "type": "`$INTEGER`",
           },
           {
             "name": "img_src",
+            "short": "URL to the image file",
             "type": "`$STRING`",
           },
           {
@@ -70,6 +76,7 @@ def make_config():
           },
           {
             "name": "sol",
+            "short": "Martian sol (day) when the photo was taken",
             "type": "`$INTEGER`",
           },
         ],

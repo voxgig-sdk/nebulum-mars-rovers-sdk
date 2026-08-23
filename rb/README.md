@@ -254,11 +254,11 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `camera` |  |
-| `earth_date` |  |
-| `id` |  |
-| `img_src` |  |
+| `earth_date` | Earth date when the photo was taken |
+| `id` | Unique identifier for the photo |
+| `img_src` | URL to the image file |
 | `rover` |  |
-| `sol` |  |
+| `sol` | Martian sol (day) when the photo was taken |
 
 Operations: List, Load.
 
@@ -285,11 +285,11 @@ Create an instance: `photo = client.Photo`
 | Field | Type | Description |
 | --- | --- | --- |
 | `camera` | `Hash` |  |
-| `earth_date` | `String` |  |
-| `id` | `Integer` |  |
-| `img_src` | `String` |  |
+| `earth_date` | `String` | Earth date when the photo was taken |
+| `id` | `Integer` | Unique identifier for the photo |
+| `img_src` | `String` | URL to the image file |
 | `rover` | `Hash` |  |
-| `sol` | `Integer` |  |
+| `sol` | `Integer` | Martian sol (day) when the photo was taken |
 
 #### Example: Load
 

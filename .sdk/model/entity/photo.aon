@@ -13,16 +13,19 @@ main: kit: entity: photo: {
     {
       name: "earth_date"
       req: false
+      short: "Earth date when the photo was taken"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the photo"
       type: "`$INTEGER`"
     }
     {
       name: "img_src"
       req: false
+      short: "URL to the image file"
       type: "`$STRING`"
     }
     {
@@ -33,6 +36,7 @@ main: kit: entity: photo: {
     {
       name: "sol"
       req: false
+      short: "Martian sol (day) when the photo was taken"
       type: "`$INTEGER`"
     }
   ]

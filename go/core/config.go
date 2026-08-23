@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "NebulumMarsRovers",
+			"slug": "nebulum-mars-rovers",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,14 +40,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "earth_date",
+						"short": "Earth date when the photo was taken",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the photo",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "img_src",
+						"short": "URL to the image file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -53,6 +59,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "sol",
+						"short": "Martian sol (day) when the photo was taken",
 						"type": "`$INTEGER`",
 					},
 				},

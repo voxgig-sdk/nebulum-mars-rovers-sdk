@@ -93,11 +93,11 @@ $photo = $client->Photo();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `camera` | `array` | No |  |
-| `earth_date` | `string` | No |  |
-| `id` | `int` | No |  |
-| `img_src` | `string` | No |  |
+| `earth_date` | `string` | No | Earth date when the photo was taken |
+| `id` | `int` | No | Unique identifier for the photo |
+| `img_src` | `string` | No | URL to the image file |
 | `rover` | `array` | No |  |
-| `sol` | `int` | No |  |
+| `sol` | `int` | No | Martian sol (day) when the photo was taken |
 
 ### Operations
 

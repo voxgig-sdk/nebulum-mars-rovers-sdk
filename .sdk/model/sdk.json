@@ -42,18 +42,21 @@
               "active": true,
               "name": "earth_date",
               "req": false,
+              "short": "Earth date when the photo was taken",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the photo",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "img_src",
               "req": false,
+              "short": "URL to the image file",
               "type": "`$STRING`"
             },
             {
@@ -66,6 +69,7 @@
               "active": true,
               "name": "sol",
               "req": false,
+              "short": "Martian sol (day) when the photo was taken",
               "type": "`$INTEGER`"
             }
           ],

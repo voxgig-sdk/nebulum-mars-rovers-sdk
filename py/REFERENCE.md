@@ -88,11 +88,11 @@ photo = client.Photo()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `camera` | `dict` | No |  |
-| `earth_date` | `str` | No |  |
-| `id` | `int` | No |  |
-| `img_src` | `str` | No |  |
+| `earth_date` | `str` | No | Earth date when the photo was taken |
+| `id` | `int` | No | Unique identifier for the photo |
+| `img_src` | `str` | No | URL to the image file |
 | `rover` | `dict` | No |  |
-| `sol` | `int` | No |  |
+| `sol` | `int` | No | Martian sol (day) when the photo was taken |
 
 ### Operations
 

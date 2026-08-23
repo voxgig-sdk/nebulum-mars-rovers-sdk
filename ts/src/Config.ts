@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'NebulumMarsRovers',
+        slug: "nebulum-mars-rovers",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -60,14 +71,17 @@ class Config {
         },
         {
           "name": "earth_date",
+          "short": "Earth date when the photo was taken",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the photo",
           "type": "`$INTEGER`"
         },
         {
           "name": "img_src",
+          "short": "URL to the image file",
           "type": "`$STRING`"
         },
         {
@@ -76,6 +90,7 @@ class Config {
         },
         {
           "name": "sol",
+          "short": "Martian sol (day) when the photo was taken",
           "type": "`$INTEGER`"
         }
       ],

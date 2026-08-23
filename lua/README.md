@@ -242,11 +242,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `camera` |  |
-| `earth_date` |  |
-| `id` |  |
-| `img_src` |  |
+| `earth_date` | Earth date when the photo was taken |
+| `id` | Unique identifier for the photo |
+| `img_src` | URL to the image file |
 | `rover` |  |
-| `sol` |  |
+| `sol` | Martian sol (day) when the photo was taken |
 
 Operations: List, Load.
 
@@ -273,11 +273,11 @@ Create an instance: `local photo = client:Photo(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `camera` | `table` |  |
-| `earth_date` | `string` |  |
-| `id` | `number` |  |
-| `img_src` | `string` |  |
+| `earth_date` | `string` | Earth date when the photo was taken |
+| `id` | `number` | Unique identifier for the photo |
+| `img_src` | `string` | URL to the image file |
 | `rover` | `table` |  |
-| `sol` | `number` |  |
+| `sol` | `number` | Martian sol (day) when the photo was taken |
 
 #### Example: Load
 

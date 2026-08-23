@@ -257,11 +257,11 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `camera` |  |
-| `earth_date` |  |
-| `id` |  |
-| `img_src` |  |
+| `earth_date` | Earth date when the photo was taken |
+| `id` | Unique identifier for the photo |
+| `img_src` | URL to the image file |
 | `rover` |  |
-| `sol` |  |
+| `sol` | Martian sol (day) when the photo was taken |
 
 Operations: List, Load.
 
@@ -288,11 +288,11 @@ Create an instance: `photo = client.Photo()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `camera` | `dict` |  |
-| `earth_date` | `str` |  |
-| `id` | `int` |  |
-| `img_src` | `str` |  |
+| `earth_date` | `str` | Earth date when the photo was taken |
+| `id` | `int` | Unique identifier for the photo |
+| `img_src` | `str` | URL to the image file |
 | `rover` | `dict` |  |
-| `sol` | `int` |  |
+| `sol` | `int` | Martian sol (day) when the photo was taken |
 
 #### Example: Load
 

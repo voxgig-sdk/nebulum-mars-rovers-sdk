@@ -19,6 +19,9 @@ module NebulumMarsRoversConfig
     {
       "main" => {
         "name" => "NebulumMarsRovers",
+        "slug" => "nebulum-mars-rovers",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -45,14 +48,17 @@ module NebulumMarsRoversConfig
             },
             {
               "name" => "earth_date",
+              "short" => "Earth date when the photo was taken",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "Unique identifier for the photo",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "img_src",
+              "short" => "URL to the image file",
               "type" => "`$STRING`",
             },
             {
@@ -61,6 +67,7 @@ module NebulumMarsRoversConfig
             },
             {
               "name" => "sol",
+              "short" => "Martian sol (day) when the photo was taken",
               "type" => "`$INTEGER`",
             },
           ],

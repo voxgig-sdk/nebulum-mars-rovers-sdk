@@ -117,11 +117,11 @@ const photo = client.Photo()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `camera` | `Record<string, any>` | No |  |
-| `earth_date` | `string` | No |  |
-| `id` | `number` | No |  |
-| `img_src` | `string` | No |  |
+| `earth_date` | `string` | No | Earth date when the photo was taken |
+| `id` | `number` | No | Unique identifier for the photo |
+| `img_src` | `string` | No | URL to the image file |
 | `rover` | `Record<string, any>` | No |  |
-| `sol` | `number` | No |  |
+| `sol` | `number` | No | Martian sol (day) when the photo was taken |
 
 ### Operations
 
