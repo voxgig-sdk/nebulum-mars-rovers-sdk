@@ -28,6 +28,7 @@ module NebulumMarsRoversConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
