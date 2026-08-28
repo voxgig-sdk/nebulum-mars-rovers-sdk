@@ -32,11 +32,7 @@ class PhotoLoadMatch
 /** Request payload for Photo#list. */
 class PhotoListMatch
 {
-    public ?array $camera = null;
     public ?string $earth_date = null;
-    public ?int $id = null;
-    public ?string $img_src = null;
-    public ?array $rover = null;
     public ?int $sol = null;
 }
 

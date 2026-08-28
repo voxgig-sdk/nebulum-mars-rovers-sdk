@@ -48,29 +48,13 @@ PhotoLoadMatch = Struct.new(
 
 # Request payload for Photo#list.
 #
-# @!attribute [rw] camera
-#   @return [Hash, nil]
-#
 # @!attribute [rw] earth_date
 #   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] img_src
-#   @return [String, nil]
-#
-# @!attribute [rw] rover
-#   @return [Hash, nil]
 #
 # @!attribute [rw] sol
 #   @return [Integer, nil]
 PhotoListMatch = Struct.new(
-  :camera,
   :earth_date,
-  :id,
-  :img_src,
-  :rover,
   :sol,
   keyword_init: true
 )

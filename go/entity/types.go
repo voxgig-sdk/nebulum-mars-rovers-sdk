@@ -29,11 +29,7 @@ type PhotoLoadMatch struct {
 
 // PhotoListMatch is the typed request payload for Photo.ListTyped.
 type PhotoListMatch struct {
-	Camera *map[string]any `json:"camera,omitempty"`
 	EarthDate *string `json:"earth_date,omitempty"`
-	Id *int `json:"id,omitempty"`
-	ImgSrc *string `json:"img_src,omitempty"`
-	Rover *map[string]any `json:"rover,omitempty"`
 	Sol *int `json:"sol,omitempty"`
 }
 

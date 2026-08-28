@@ -30,9 +30,5 @@ class PhotoLoadMatch(TypedDict):
 
 
 class PhotoListMatch(TypedDict, total=False):
-    camera: dict
     earth_date: str
-    id: int
-    img_src: str
-    rover: dict
     sol: int

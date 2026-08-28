@@ -19,11 +19,7 @@ export interface PhotoLoadMatch {
 }
 
 export interface PhotoListMatch {
-  camera?: Record<string, any>
   earth_date?: string
-  id?: number
-  img_src?: string
-  rover?: Record<string, any>
   sol?: number
 }
 
