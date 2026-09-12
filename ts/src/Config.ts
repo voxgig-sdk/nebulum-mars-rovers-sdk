@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -71,6 +82,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "date",
           "name": "earth_date",
           "short": "Earth date when the photo was taken",
           "type": "`$STRING`"
@@ -81,6 +93,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "uri",
           "name": "img_src",
           "short": "URL to the image file",
           "type": "`$STRING`"
@@ -95,6 +108,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "photo",
       "op": {
         "list": {
@@ -123,10 +140,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/rovers/curiosity/photos",
-              "parts": [
-                "rovers",
-                "curiosity",
-                "photos"
+              "segments": [
+                {
+                  "lit": "rovers"
+                },
+                {
+                  "lit": "curiosity"
+                },
+                {
+                  "lit": "photos"
+                }
               ],
               "select": {
                 "exist": [
@@ -137,7 +160,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.photos`"
-              }
+              },
+              "parts": [
+                "rovers",
+                "curiosity",
+                "photos"
+              ]
             },
             {
               "args": {
@@ -161,10 +189,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/rovers/perseverance/photos",
-              "parts": [
-                "rovers",
-                "perseverance",
-                "photos"
+              "segments": [
+                {
+                  "lit": "rovers"
+                },
+                {
+                  "lit": "perseverance"
+                },
+                {
+                  "lit": "photos"
+                }
               ],
               "select": {
                 "exist": [
@@ -175,7 +209,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.photos`"
-              }
+              },
+              "parts": [
+                "rovers",
+                "perseverance",
+                "photos"
+              ]
             }
           ]
         },
@@ -199,9 +238,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/photos/{id}",
-              "parts": [
-                "photos",
-                "{id}"
+              "segments": [
+                {
+                  "lit": "photos"
+                },
+                {
+                  "var": "id"
+                }
               ],
               "select": {
                 "exist": [
@@ -211,7 +254,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "photos",
+                "{id}"
+              ]
             }
           ]
         }
@@ -227,6 +274,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

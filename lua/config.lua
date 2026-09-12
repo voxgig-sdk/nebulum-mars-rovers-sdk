@@ -36,6 +36,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "date",
             ["name"] = "earth_date",
             ["short"] = "Earth date when the photo was taken",
             ["type"] = "`$STRING`",
@@ -46,6 +47,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "img_src",
             ["short"] = "URL to the image file",
             ["type"] = "`$STRING`",
@@ -59,6 +61,10 @@ local function make_config()
             ["short"] = "Martian sol (day) when the photo was taken",
             ["type"] = "`$INTEGER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "photo",
         ["op"] = {
@@ -88,10 +94,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rovers/curiosity/photos",
-                ["parts"] = {
-                  "rovers",
-                  "curiosity",
-                  "photos",
+                ["segments"] = {
+                  {
+                    ["lit"] = "rovers",
+                  },
+                  {
+                    ["lit"] = "curiosity",
+                  },
+                  {
+                    ["lit"] = "photos",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -102,6 +114,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.photos`",
+                },
+                ["parts"] = {
+                  "rovers",
+                  "curiosity",
+                  "photos",
                 },
               },
               {
@@ -126,10 +143,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/rovers/perseverance/photos",
-                ["parts"] = {
-                  "rovers",
-                  "perseverance",
-                  "photos",
+                ["segments"] = {
+                  {
+                    ["lit"] = "rovers",
+                  },
+                  {
+                    ["lit"] = "perseverance",
+                  },
+                  {
+                    ["lit"] = "photos",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -140,6 +163,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.photos`",
+                },
+                ["parts"] = {
+                  "rovers",
+                  "perseverance",
+                  "photos",
                 },
               },
             },
@@ -164,9 +192,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/photos/{id}",
-                ["parts"] = {
-                  "photos",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "photos",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -176,6 +208,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "photos",
+                  "{id}",
                 },
               },
             },

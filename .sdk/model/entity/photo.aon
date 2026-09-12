@@ -11,6 +11,7 @@ main: kit: entity: photo: {
       type: "`$OBJECT`"
     }
     {
+      format: "date"
       name: "earth_date"
       req: false
       short: "Earth date when the photo was taken"
@@ -23,6 +24,7 @@ main: kit: entity: photo: {
       type: "`$INTEGER`"
     }
     {
+      format: "uri"
       name: "img_src"
       req: false
       short: "URL to the image file"
@@ -74,10 +76,16 @@ main: kit: entity: photo: {
           }
           method: "GET"
           orig: "/rovers/curiosity/photos"
-          parts: [
-            "rovers"
-            "curiosity"
-            "photos"
+          segments: [
+            {
+              lit: "rovers"
+            }
+            {
+              lit: "curiosity"
+            }
+            {
+              lit: "photos"
+            }
           ]
           select: {
             exist: [
@@ -113,10 +121,16 @@ main: kit: entity: photo: {
           }
           method: "GET"
           orig: "/rovers/perseverance/photos"
-          parts: [
-            "rovers"
-            "perseverance"
-            "photos"
+          segments: [
+            {
+              lit: "rovers"
+            }
+            {
+              lit: "perseverance"
+            }
+            {
+              lit: "photos"
+            }
           ]
           select: {
             exist: [
@@ -149,9 +163,13 @@ main: kit: entity: photo: {
           }
           method: "GET"
           orig: "/photos/{id}"
-          parts: [
-            "photos"
-            "{id}"
+          segments: [
+            {
+              lit: "photos"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

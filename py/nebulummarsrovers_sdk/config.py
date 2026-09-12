@@ -1,6 +1,14 @@
 # NebulumMarsRovers SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -57,6 +65,7 @@ def make_config():
             "type": "`$OBJECT`",
           },
           {
+            "format": "date",
             "name": "earth_date",
             "short": "Earth date when the photo was taken",
             "type": "`$STRING`",
@@ -67,6 +76,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "uri",
             "name": "img_src",
             "short": "URL to the image file",
             "type": "`$STRING`",
@@ -81,6 +91,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "photo",
         "op": {
           "list": {
@@ -109,10 +123,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/rovers/curiosity/photos",
-                "parts": [
-                  "rovers",
-                  "curiosity",
-                  "photos",
+                "segments": [
+                  {
+                    "lit": "rovers",
+                  },
+                  {
+                    "lit": "curiosity",
+                  },
+                  {
+                    "lit": "photos",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -124,6 +144,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.photos`",
                 },
+                "parts": [
+                  "rovers",
+                  "curiosity",
+                  "photos",
+                ],
               },
               {
                 "args": {
@@ -147,10 +172,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/rovers/perseverance/photos",
-                "parts": [
-                  "rovers",
-                  "perseverance",
-                  "photos",
+                "segments": [
+                  {
+                    "lit": "rovers",
+                  },
+                  {
+                    "lit": "perseverance",
+                  },
+                  {
+                    "lit": "photos",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -162,6 +193,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.photos`",
                 },
+                "parts": [
+                  "rovers",
+                  "perseverance",
+                  "photos",
+                ],
               },
             ],
           },
@@ -185,9 +221,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/photos/{id}",
-                "parts": [
-                  "photos",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "photos",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -198,6 +238,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "photos",
+                  "{id}",
+                ],
               },
             ],
           },

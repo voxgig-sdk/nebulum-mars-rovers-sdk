@@ -48,6 +48,7 @@ module NebulumMarsRoversConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date",
               "name" => "earth_date",
               "short" => "Earth date when the photo was taken",
               "type" => "`$STRING`",
@@ -58,6 +59,7 @@ module NebulumMarsRoversConfig
               "type" => "`$INTEGER`",
             },
             {
+              "format" => "uri",
               "name" => "img_src",
               "short" => "URL to the image file",
               "type" => "`$STRING`",
@@ -72,6 +74,10 @@ module NebulumMarsRoversConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "photo",
           "op" => {
             "list" => {
@@ -100,10 +106,16 @@ module NebulumMarsRoversConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rovers/curiosity/photos",
-                  "parts" => [
-                    "rovers",
-                    "curiosity",
-                    "photos",
+                  "segments" => [
+                    {
+                      "lit" => "rovers",
+                    },
+                    {
+                      "lit" => "curiosity",
+                    },
+                    {
+                      "lit" => "photos",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -115,6 +127,11 @@ module NebulumMarsRoversConfig
                     "req" => "`reqdata`",
                     "res" => "`body.photos`",
                   },
+                  "parts" => [
+                    "rovers",
+                    "curiosity",
+                    "photos",
+                  ],
                 },
                 {
                   "args" => {
@@ -138,10 +155,16 @@ module NebulumMarsRoversConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/rovers/perseverance/photos",
-                  "parts" => [
-                    "rovers",
-                    "perseverance",
-                    "photos",
+                  "segments" => [
+                    {
+                      "lit" => "rovers",
+                    },
+                    {
+                      "lit" => "perseverance",
+                    },
+                    {
+                      "lit" => "photos",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -153,6 +176,11 @@ module NebulumMarsRoversConfig
                     "req" => "`reqdata`",
                     "res" => "`body.photos`",
                   },
+                  "parts" => [
+                    "rovers",
+                    "perseverance",
+                    "photos",
+                  ],
                 },
               ],
             },
@@ -176,9 +204,13 @@ module NebulumMarsRoversConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/photos/{id}",
-                  "parts" => [
-                    "photos",
-                    "{id}",
+                  "segments" => [
+                    {
+                      "lit" => "photos",
+                    },
+                    {
+                      "var" => "id",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -189,6 +221,10 @@ module NebulumMarsRoversConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "photos",
+                    "{id}",
+                  ],
                 },
               ],
             },
