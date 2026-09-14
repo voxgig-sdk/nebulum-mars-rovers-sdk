@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/nebulum-mars-rovers",
+  "name": "@voxgig-sdk/nebulum-mars-rovers-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Nebulum Mars Rovers public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

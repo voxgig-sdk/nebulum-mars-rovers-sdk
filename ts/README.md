@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
+import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers-sdk'
 
 const client = new NebulumMarsRoversSDK()
 ```
@@ -435,7 +435,7 @@ nebulum-mars-rovers/
 Import the SDK from the package root:
 
 ```ts
-import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
+import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers-sdk'
 ```
 
 ### Entity state

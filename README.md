@@ -105,7 +105,7 @@ local results, err = client:Photo():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nebulum-mars-rovers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
 | Python | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
 | PHP | `voxgig-sdk/nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go` | `go get github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Photo():list()
 ### TypeScript
 
 ```ts
-import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers'
+import { NebulumMarsRoversSDK } from '@voxgig-sdk/nebulum-mars-rovers-sdk'
 
 const client = new NebulumMarsRoversSDK()
 
