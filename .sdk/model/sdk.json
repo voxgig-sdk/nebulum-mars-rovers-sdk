@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "photo": {
           "active": true,
@@ -109,6 +173,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /rovers/curiosity/photos",
+                    "json": "{\"operationId\":\"getCuriosityPhotos\",\"parameters\":[{\"description\":\"Earth date in YYYY-MM-DD format\",\"in\":\"query\",\"name\":\"earth_date\",\"required\":false,\"schema\":{\"example\":\"2015-06-03\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Martian sol (day) number\",\"in\":\"query\",\"name\":\"sol\",\"required\":false,\"schema\":{\"example\":3718,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"photos\":{\"items\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of photos\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rovers/curiosity/photos",
@@ -158,6 +228,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /rovers/perseverance/photos",
+                    "json": "{\"operationId\":\"getPerseverancePhotos\",\"parameters\":[{\"description\":\"Earth date in YYYY-MM-DD format\",\"in\":\"query\",\"name\":\"earth_date\",\"required\":false,\"schema\":{\"example\":\"2025-11-06\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Martian sol (day) number\",\"in\":\"query\",\"name\":\"sol\",\"required\":false,\"schema\":{\"example\":1676,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"photos\":{\"items\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of photos\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/rovers/perseverance/photos",
@@ -204,6 +280,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /photos/{id}",
+                    "json": "{\"operationId\":\"getPhotoById\",\"parameters\":[{\"description\":\"Unique identifier of the photo\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":878,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with photo details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Photo not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/photos/{id}",
@@ -234,13 +316,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -331,6 +623,102 @@
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
           "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
         }
       },
       "flow": {
@@ -403,6 +791,48 @@
         "website": "https://rovers.nebulum.one"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -957,6 +1387,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -998,7 +1429,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

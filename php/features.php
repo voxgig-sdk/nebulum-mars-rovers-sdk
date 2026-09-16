@@ -4,7 +4,10 @@ declare(strict_types=1);
 // NebulumMarsRovers SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class NebulumMarsRoversFeatures
@@ -14,8 +17,14 @@ class NebulumMarsRoversFeatures
         switch ($name) {
             case "base":
                 return new NebulumMarsRoversBaseFeature();
+            case "ratelimit":
+                return new NebulumMarsRoversRatelimitFeature();
+            case "retry":
+                return new NebulumMarsRoversRetryFeature();
             case "test":
                 return new NebulumMarsRoversTestFeature();
+            case "timeout":
+                return new NebulumMarsRoversTimeoutFeature();
             default:
                 return new NebulumMarsRoversBaseFeature();
         }
@@ -31,7 +40,10 @@ class NebulumMarsRoversFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

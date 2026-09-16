@@ -7,7 +7,7 @@
         "id": "PHOTO00",
         "img_src": "s3f",
         "rover": {},
-        "sol": "s41"
+        "sol": 65
       },
       "PHOTO01": {
         "camera": {},
@@ -15,7 +15,7 @@
         "id": "PHOTO01",
         "img_src": "s7b",
         "rover": {},
-        "sol": "s7d"
+        "sol": 125
       },
       "PHOTO02": {
         "camera": {},
@@ -23,7 +23,7 @@
         "id": "PHOTO02",
         "img_src": "sb7",
         "rover": {},
-        "sol": "sb9"
+        "sol": 185
       }
     }
   },
@@ -34,7 +34,413 @@
         "earth_date": "sf1",
         "img_src": "sf3",
         "rover": {},
-        "sol": "sf5"
+        "sol": 245
+      }
+    }
+  },
+  "requests": {
+    "GET /rovers/curiosity/photos": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCuriosityPhotos",
+        "parameters": [
+          {
+            "description": "Earth date in YYYY-MM-DD format",
+            "in": "query",
+            "name": "earth_date",
+            "required": false,
+            "schema": {
+              "example": "2015-06-03",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Martian sol (day) number",
+            "in": "query",
+            "name": "sol",
+            "required": false,
+            "schema": {
+              "example": 3718,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "photos": {
+                      "items": {
+                        "properties": {
+                          "camera": {
+                            "properties": {
+                              "full_name": {
+                                "description": "Full camera name",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "Camera identifier",
+                                "type": "integer"
+                              },
+                              "name": {
+                                "description": "Camera name",
+                                "type": "string"
+                              },
+                              "rover_id": {
+                                "description": "Rover identifier",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "earth_date": {
+                            "description": "Earth date when the photo was taken",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the photo",
+                            "example": 878,
+                            "type": "integer"
+                          },
+                          "img_src": {
+                            "description": "URL to the image file",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "rover": {
+                            "properties": {
+                              "id": {
+                                "description": "Rover identifier",
+                                "type": "integer"
+                              },
+                              "landing_date": {
+                                "description": "Date the rover landed on Mars",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "launch_date": {
+                                "description": "Date the rover was launched",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Rover name",
+                                "enum": [
+                                  "Curiosity",
+                                  "Perseverance"
+                                ],
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "Current status of the rover",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "sol": {
+                            "description": "Martian sol (day) when the photo was taken",
+                            "example": 1000,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of photos"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /rovers/perseverance/photos": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPerseverancePhotos",
+        "parameters": [
+          {
+            "description": "Earth date in YYYY-MM-DD format",
+            "in": "query",
+            "name": "earth_date",
+            "required": false,
+            "schema": {
+              "example": "2025-11-06",
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Martian sol (day) number",
+            "in": "query",
+            "name": "sol",
+            "required": false,
+            "schema": {
+              "example": 1676,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "photos": {
+                      "items": {
+                        "properties": {
+                          "camera": {
+                            "properties": {
+                              "full_name": {
+                                "description": "Full camera name",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "Camera identifier",
+                                "type": "integer"
+                              },
+                              "name": {
+                                "description": "Camera name",
+                                "type": "string"
+                              },
+                              "rover_id": {
+                                "description": "Rover identifier",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "earth_date": {
+                            "description": "Earth date when the photo was taken",
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the photo",
+                            "example": 878,
+                            "type": "integer"
+                          },
+                          "img_src": {
+                            "description": "URL to the image file",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "rover": {
+                            "properties": {
+                              "id": {
+                                "description": "Rover identifier",
+                                "type": "integer"
+                              },
+                              "landing_date": {
+                                "description": "Date the rover landed on Mars",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "launch_date": {
+                                "description": "Date the rover was launched",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Rover name",
+                                "enum": [
+                                  "Curiosity",
+                                  "Perseverance"
+                                ],
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "Current status of the rover",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "sol": {
+                            "description": "Martian sol (day) when the photo was taken",
+                            "example": 1000,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with list of photos"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /photos/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPhotoById",
+        "parameters": [
+          {
+            "description": "Unique identifier of the photo",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": 878,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "camera": {
+                      "properties": {
+                        "full_name": {
+                          "description": "Full camera name",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "Camera identifier",
+                          "type": "integer"
+                        },
+                        "name": {
+                          "description": "Camera name",
+                          "type": "string"
+                        },
+                        "rover_id": {
+                          "description": "Rover identifier",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "earth_date": {
+                      "description": "Earth date when the photo was taken",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the photo",
+                      "example": 878,
+                      "type": "integer"
+                    },
+                    "img_src": {
+                      "description": "URL to the image file",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "rover": {
+                      "properties": {
+                        "id": {
+                          "description": "Rover identifier",
+                          "type": "integer"
+                        },
+                        "landing_date": {
+                          "description": "Date the rover landed on Mars",
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "launch_date": {
+                          "description": "Date the rover was launched",
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Rover name",
+                          "enum": [
+                            "Curiosity",
+                            "Perseverance"
+                          ],
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Current status of the rover",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "sol": {
+                      "description": "Martian sol (day) when the photo was taken",
+                      "example": 1000,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with photo details"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Photo not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

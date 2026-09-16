@@ -1,12 +1,18 @@
 # NebulumMarsRovers SDK feature factory
 
 from nebulummarsrovers_sdk.feature.base_feature import NebulumMarsRoversBaseFeature
+from nebulummarsrovers_sdk.feature.ratelimit_feature import NebulumMarsRoversRatelimitFeature
+from nebulummarsrovers_sdk.feature.retry_feature import NebulumMarsRoversRetryFeature
 from nebulummarsrovers_sdk.feature.test_feature import NebulumMarsRoversTestFeature
+from nebulummarsrovers_sdk.feature.timeout_feature import NebulumMarsRoversTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NebulumMarsRoversBaseFeature(),
+    "ratelimit": lambda: NebulumMarsRoversRatelimitFeature(),
+    "retry": lambda: NebulumMarsRoversRetryFeature(),
     "test": lambda: NebulumMarsRoversTestFeature(),
+    "timeout": lambda: NebulumMarsRoversTimeoutFeature(),
 }
 
 
