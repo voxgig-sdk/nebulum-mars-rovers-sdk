@@ -105,12 +105,12 @@ local results, err = client:Photo():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nebulum-mars-rovers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
-| Python | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
-| PHP | `voxgig-sdk/nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nebulum-mars-rovers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/tags) |
+| Python | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/tags) |
+| PHP | `voxgig-sdk/nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go` | `go get github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go@latest` |
-| Ruby | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
-| Lua | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/releases) |
+| Ruby | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/tags) |
+| Lua | `voxgig-sdk-nebulum-mars-rovers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nebulum-mars-rovers-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go-cli` | `go install github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go-cli/cmd/nebulum-mars-rovers@latest` |
 | Go MCP server | `github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go-mcp` | `go get github.com/voxgig-sdk/nebulum-mars-rovers-sdk/go-mcp@latest` |
 
