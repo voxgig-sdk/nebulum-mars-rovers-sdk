@@ -1,7 +1,7 @@
 // Typed models for the NebulumMarsRovers SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,12 +14,6 @@ import (
 
 // Photo is the typed data model for the photo entity.
 type Photo struct {
-	Camera *map[string]any `json:"camera,omitempty"`
-	EarthDate *string `json:"earth_date,omitempty"`
-	Id *int `json:"id,omitempty"`
-	ImgSrc *string `json:"img_src,omitempty"`
-	Rover *map[string]any `json:"rover,omitempty"`
-	Sol *int `json:"sol,omitempty"`
 }
 
 // PhotoLoadMatch is the typed request payload for Photo.LoadTyped.

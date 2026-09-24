@@ -24,56 +24,128 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "photo": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "camera",
-              "req": false,
-              "type": "`$OBJECT`"
+          "fields": {
+            "camera": {
+              "a": true,
+              "h": "Camera",
+              "n": "camera",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "earth_date",
-              "req": false,
-              "short": "Earth date when the photo was taken",
-              "type": "`$STRING`"
+            "earth_date": {
+              "a": true,
+              "fo": "date",
+              "h": "Earth Date",
+              "n": "earth_date",
+              "r": false,
+              "sh": "Earth date when the photo was taken",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the photo",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the photo",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "img_src",
-              "req": false,
-              "short": "URL to the image file",
-              "type": "`$STRING`"
+            "img_src": {
+              "a": true,
+              "fo": "uri",
+              "h": "Img Src",
+              "n": "img_src",
+              "r": false,
+              "sh": "URL to the image file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rover",
-              "req": false,
-              "type": "`$OBJECT`"
+            "rover": {
+              "a": true,
+              "h": "Rover",
+              "n": "rover",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "sol",
-              "req": false,
-              "short": "Martian sol (day) when the photo was taken",
-              "type": "`$INTEGER`"
+            "sol": {
+              "a": true,
+              "h": "Sol",
+              "n": "sol",
+              "r": false,
+              "sh": "Martian sol (day) when the photo was taken",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -85,39 +157,45 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /rovers/curiosity/photos",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "2015-06-03",
-                        "kind": "query",
-                        "name": "earth_date",
-                        "orig": "earth_date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2015-06-03",
+                        "k": "query",
+                        "n": "earth_date",
+                        "or": "earth_date",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 3718,
-                        "kind": "query",
-                        "name": "sol",
-                        "orig": "sol",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 3718,
+                        "k": "query",
+                        "n": "sol",
+                        "or": "sol",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /rovers/curiosity/photos",
-                    "json": "{\"operationId\":\"getCuriosityPhotos\",\"parameters\":[{\"description\":\"Earth date in YYYY-MM-DD format\",\"in\":\"query\",\"name\":\"earth_date\",\"required\":false,\"schema\":{\"example\":\"2015-06-03\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Martian sol (day) number\",\"in\":\"query\",\"name\":\"sol\",\"required\":false,\"schema\":{\"example\":3718,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"photos\":{\"items\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of photos\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/rovers/curiosity/photos",
+                  "q": {
+                    "exist": [
+                      "earth_date",
+                      "sol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/rovers/curiosity/photos",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "rovers"
                     },
@@ -128,51 +206,51 @@
                       "lit": "photos"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "earth_date",
-                      "sol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.photos`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /rovers/perseverance/photos",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "2025-11-06",
-                        "kind": "query",
-                        "name": "earth_date",
-                        "orig": "earth_date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2025-11-06",
+                        "k": "query",
+                        "n": "earth_date",
+                        "or": "earth_date",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 1676,
-                        "kind": "query",
-                        "name": "sol",
-                        "orig": "sol",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1676,
+                        "k": "query",
+                        "n": "sol",
+                        "or": "sol",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /rovers/perseverance/photos",
-                    "json": "{\"operationId\":\"getPerseverancePhotos\",\"parameters\":[{\"description\":\"Earth date in YYYY-MM-DD format\",\"in\":\"query\",\"name\":\"earth_date\",\"required\":false,\"schema\":{\"example\":\"2025-11-06\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Martian sol (day) number\",\"in\":\"query\",\"name\":\"sol\",\"required\":false,\"schema\":{\"example\":1676,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"photos\":{\"items\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of photos\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/rovers/perseverance/photos",
+                  "q": {
+                    "exist": [
+                      "earth_date",
+                      "sol"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/rovers/perseverance/photos",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "rovers"
                     },
@@ -183,13 +261,7 @@
                       "lit": "photos"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "earth_date",
-                      "sol"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.photos`"
                   }
@@ -201,30 +273,35 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /photos/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": 878,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 878,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /photos/{id}",
-                    "json": "{\"operationId\":\"getPhotoById\",\"parameters\":[{\"description\":\"Unique identifier of the photo\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":878,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"camera\":{\"properties\":{\"full_name\":{\"description\":\"Full camera name\",\"type\":\"string\"},\"id\":{\"description\":\"Camera identifier\",\"type\":\"integer\"},\"name\":{\"description\":\"Camera name\",\"type\":\"string\"},\"rover_id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"}},\"type\":\"object\"},\"earth_date\":{\"description\":\"Earth date when the photo was taken\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the photo\",\"example\":878,\"type\":\"integer\"},\"img_src\":{\"description\":\"URL to the image file\",\"format\":\"uri\",\"type\":\"string\"},\"rover\":{\"properties\":{\"id\":{\"description\":\"Rover identifier\",\"type\":\"integer\"},\"landing_date\":{\"description\":\"Date the rover landed on Mars\",\"format\":\"date\",\"type\":\"string\"},\"launch_date\":{\"description\":\"Date the rover was launched\",\"format\":\"date\",\"type\":\"string\"},\"name\":{\"description\":\"Rover name\",\"enum\":[\"Curiosity\",\"Perseverance\"],\"type\":\"string\"},\"status\":{\"description\":\"Current status of the rover\",\"type\":\"string\"}},\"type\":\"object\"},\"sol\":{\"description\":\"Martian sol (day) when the photo was taken\",\"example\":1000,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with photo details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Photo not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/photos/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/photos/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "photos"
                     },
@@ -232,12 +309,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -666,13 +738,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -682,19 +754,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "photo_ref01",
                 "srcdatavar": "photo_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "photo01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

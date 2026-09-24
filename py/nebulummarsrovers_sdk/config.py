@@ -116,33 +116,39 @@ def make_config():
         "fields": [
           {
             "name": "camera",
+            "title": "Camera",
             "type": "`$OBJECT`",
           },
           {
-            "format": "date",
             "name": "earth_date",
-            "short": "Earth date when the photo was taken",
+            "title": "Earth Date",
             "type": "`$STRING`",
+            "short": "Earth date when the photo was taken",
+            "format": "date",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the photo",
+            "title": "Id",
             "type": "`$INTEGER`",
+            "short": "Unique identifier for the photo",
           },
           {
-            "format": "uri",
             "name": "img_src",
-            "short": "URL to the image file",
+            "title": "Img Src",
             "type": "`$STRING`",
+            "short": "URL to the image file",
+            "format": "uri",
           },
           {
             "name": "rover",
+            "title": "Rover",
             "type": "`$OBJECT`",
           },
           {
             "name": "sol",
-            "short": "Martian sol (day) when the photo was taken",
+            "title": "Sol",
             "type": "`$INTEGER`",
+            "short": "Martian sol (day) when the photo was taken",
           },
         ],
         "id": {
@@ -156,24 +162,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "2015-06-03",
-                      "kind": "query",
-                      "name": "earth_date",
-                      "orig": "earth_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 3718,
-                      "kind": "query",
-                      "name": "sol",
-                      "orig": "sol",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/rovers/curiosity/photos",
@@ -188,41 +176,42 @@ def make_config():
                     "lit": "photos",
                   },
                 ],
+                "parts": [
+                  "rovers",
+                  "curiosity",
+                  "photos",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.photos`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "earth_date",
+                      "orig": "earth_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2015-06-03",
+                    },
+                    {
+                      "name": "sol",
+                      "orig": "sol",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 3718,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "earth_date",
                     "sol",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.photos`",
-                },
-                "parts": [
-                  "rovers",
-                  "curiosity",
-                  "photos",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "2025-11-06",
-                      "kind": "query",
-                      "name": "earth_date",
-                      "orig": "earth_date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": 1676,
-                      "kind": "query",
-                      "name": "sol",
-                      "orig": "sol",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/rovers/perseverance/photos",
@@ -237,21 +226,40 @@ def make_config():
                     "lit": "photos",
                   },
                 ],
+                "parts": [
+                  "rovers",
+                  "perseverance",
+                  "photos",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.photos`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "earth_date",
+                      "orig": "earth_date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "2025-11-06",
+                    },
+                    {
+                      "name": "sol",
+                      "orig": "sol",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1676,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "earth_date",
                     "sol",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.photos`",
-                },
-                "parts": [
-                  "rovers",
-                  "perseverance",
-                  "photos",
-                ],
               },
             ],
           },
@@ -260,18 +268,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 878,
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/photos/{id}",
@@ -283,19 +279,32 @@ def make_config():
                     "var": "id",
                   },
                 ],
+                "parts": [
+                  "photos",
+                  "{id}",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 878,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "photos",
-                  "{id}",
-                ],
               },
             ],
           },

@@ -43,7 +43,7 @@ local photos, err = client:Photo():list()
 if err then error(err) end
 
 for _, item in ipairs(photos) do
-  print(item["id"], item["earth_date"])
+  print(item["id"])
 end
 ```
 

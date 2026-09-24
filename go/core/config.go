@@ -91,33 +91,39 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "camera",
+						"title": "Camera",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "earth_date",
-						"short": "Earth date when the photo was taken",
+						"title": "Earth Date",
 						"type": "`$STRING`",
+						"short": "Earth date when the photo was taken",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the photo",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "Unique identifier for the photo",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "img_src",
-						"short": "URL to the image file",
+						"title": "Img Src",
 						"type": "`$STRING`",
+						"short": "URL to the image file",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "rover",
+						"title": "Rover",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "sol",
-						"short": "Martian sol (day) when the photo was taken",
+						"title": "Sol",
 						"type": "`$INTEGER`",
+						"short": "Martian sol (day) when the photo was taken",
 					},
 				},
 				"id": map[string]any{
@@ -131,24 +137,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "2015-06-03",
-											"kind": "query",
-											"name": "earth_date",
-											"orig": "earth_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 3718,
-											"kind": "query",
-											"name": "sol",
-											"orig": "sol",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rovers/curiosity/photos",
@@ -163,41 +151,42 @@ func MakeConfig() map[string]any {
 										"lit": "photos",
 									},
 								},
+								"parts": []any{
+									"rovers",
+									"curiosity",
+									"photos",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.photos`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "earth_date",
+											"orig": "earth_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2015-06-03",
+										},
+										map[string]any{
+											"name": "sol",
+											"orig": "sol",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 3718,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"earth_date",
 										"sol",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.photos`",
-								},
-								"parts": []any{
-									"rovers",
-									"curiosity",
-									"photos",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "2025-11-06",
-											"kind": "query",
-											"name": "earth_date",
-											"orig": "earth_date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 1676,
-											"kind": "query",
-											"name": "sol",
-											"orig": "sol",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/rovers/perseverance/photos",
@@ -212,20 +201,39 @@ func MakeConfig() map[string]any {
 										"lit": "photos",
 									},
 								},
+								"parts": []any{
+									"rovers",
+									"perseverance",
+									"photos",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.photos`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "earth_date",
+											"orig": "earth_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "2025-11-06",
+										},
+										map[string]any{
+											"name": "sol",
+											"orig": "sol",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1676,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"earth_date",
 										"sol",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.photos`",
-								},
-								"parts": []any{
-									"rovers",
-									"perseverance",
-									"photos",
 								},
 							},
 						},
@@ -235,18 +243,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 878,
-											"kind": "param",
-											"name": "id",
-											"orig": "id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/photos/{id}",
@@ -258,18 +254,31 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
+								"parts": []any{
+									"photos",
+									"{id}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"photos",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 878,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

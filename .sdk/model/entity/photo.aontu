@@ -1,0 +1,211 @@
+# Entity: photo
+
+main: kit: entity: photo: {
+
+  alias: field: {}
+
+  fields: {
+    camera: {
+      h: "Camera"
+      n: "camera"
+      r: false
+      t: "`$OBJECT`"
+    }
+    earth_date: {
+      fo: "date"
+      h: "Earth Date"
+      n: "earth_date"
+      r: false
+      sh: "Earth date when the photo was taken"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the photo"
+      t: "`$INTEGER`"
+    }
+    img_src: {
+      fo: "uri"
+      h: "Img Src"
+      n: "img_src"
+      r: false
+      sh: "URL to the image file"
+      t: "`$STRING`"
+    }
+    rover: {
+      h: "Rover"
+      n: "rover"
+      r: false
+      t: "`$OBJECT`"
+    }
+    sol: {
+      h: "Sol"
+      n: "sol"
+      r: false
+      sh: "Martian sol (day) when the photo was taken"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "photo"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /rovers/curiosity/photos"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "2015-06-03"
+                k: "query"
+                n: "earth_date"
+                or: "earth_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 3718
+                k: "query"
+                n: "sol"
+                or: "sol"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/rovers/curiosity/photos"
+          q: {
+            exist: [
+              "earth_date"
+              "sol"
+            ]
+          }
+          s: [
+            {
+              lit: "rovers"
+            }
+            {
+              lit: "curiosity"
+            }
+            {
+              lit: "photos"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.photos`"
+          }
+        }
+        {
+          co: {
+            id: "GET /rovers/perseverance/photos"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "2025-11-06"
+                k: "query"
+                n: "earth_date"
+                or: "earth_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1676
+                k: "query"
+                n: "sol"
+                or: "sol"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/rovers/perseverance/photos"
+          q: {
+            exist: [
+              "earth_date"
+              "sol"
+            ]
+          }
+          s: [
+            {
+              lit: "rovers"
+            }
+            {
+              lit: "perseverance"
+            }
+            {
+              lit: "photos"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.photos`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /photos/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 878
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/photos/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "photos"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

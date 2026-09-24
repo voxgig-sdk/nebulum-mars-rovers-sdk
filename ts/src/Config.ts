@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -139,33 +132,39 @@ class Config {
       "fields": [
         {
           "name": "camera",
+          "title": "Camera",
           "type": "`$OBJECT`"
         },
         {
-          "format": "date",
           "name": "earth_date",
+          "title": "Earth Date",
+          "type": "`$STRING`",
           "short": "Earth date when the photo was taken",
-          "type": "`$STRING`"
+          "format": "date"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the photo",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the photo"
         },
         {
-          "format": "uri",
           "name": "img_src",
+          "title": "Img Src",
+          "type": "`$STRING`",
           "short": "URL to the image file",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "rover",
+          "title": "Rover",
           "type": "`$OBJECT`"
         },
         {
           "name": "sol",
-          "short": "Martian sol (day) when the photo was taken",
-          "type": "`$INTEGER`"
+          "title": "Sol",
+          "type": "`$INTEGER`",
+          "short": "Martian sol (day) when the photo was taken"
         }
       ],
       "id": {
@@ -179,24 +178,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "2015-06-03",
-                    "kind": "query",
-                    "name": "earth_date",
-                    "orig": "earth_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 3718,
-                    "kind": "query",
-                    "name": "sol",
-                    "orig": "sol",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/rovers/curiosity/photos",
@@ -211,41 +192,42 @@ class Config {
                   "lit": "photos"
                 }
               ],
+              "parts": [
+                "rovers",
+                "curiosity",
+                "photos"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.photos`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "earth_date",
+                    "orig": "earth_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2015-06-03"
+                  },
+                  {
+                    "name": "sol",
+                    "orig": "sol",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 3718
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "earth_date",
                   "sol"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.photos`"
-              },
-              "parts": [
-                "rovers",
-                "curiosity",
-                "photos"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "2025-11-06",
-                    "kind": "query",
-                    "name": "earth_date",
-                    "orig": "earth_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 1676,
-                    "kind": "query",
-                    "name": "sol",
-                    "orig": "sol",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/rovers/perseverance/photos",
@@ -260,21 +242,40 @@ class Config {
                   "lit": "photos"
                 }
               ],
+              "parts": [
+                "rovers",
+                "perseverance",
+                "photos"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.photos`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "earth_date",
+                    "orig": "earth_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2025-11-06"
+                  },
+                  {
+                    "name": "sol",
+                    "orig": "sol",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1676
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "earth_date",
                   "sol"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.photos`"
-              },
-              "parts": [
-                "rovers",
-                "perseverance",
-                "photos"
-              ]
+              }
             }
           ]
         },
@@ -283,18 +284,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": 878,
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/photos/{id}",
@@ -306,19 +295,32 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "photos",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "photos",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": 878
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }

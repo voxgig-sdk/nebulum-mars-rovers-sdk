@@ -1,0 +1,44 @@
+# BasicPhotoFlow
+
+main: kit: flow: BasicPhotoFlow:
+{
+  entity: "photo",
+  kind: "basic",
+  name: "BasicPhotoFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "photo_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "photo_ref01",
+        srcdatavar: "photo_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "photo01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-photo_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPhotoFlow"
+}
