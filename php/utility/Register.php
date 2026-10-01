@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 NebulumMarsRoversUtility::setRegistrar(function (NebulumMarsRoversUtility $u): void {
     $u->clean = [NebulumMarsRoversClean::class, 'call'];
+    $u->clean_add = [NebulumMarsRoversClean::class, 'add'];
+    $u->clean_explain = [NebulumMarsRoversDone::class, 'clean_explain'];
     $u->done = [NebulumMarsRoversDone::class, 'call'];
     $u->make_error = [NebulumMarsRoversMakeError::class, 'call'];
     $u->feature_add = [NebulumMarsRoversFeatureAdd::class, 'call'];

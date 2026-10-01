@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 NebulumMarsRoversUtility.registrar = ->(u) {
   u.clean = NebulumMarsRoversUtilities::Clean
+  u.clean_add = NebulumMarsRoversUtilities::CleanAdd
+  u.clean_explain = NebulumMarsRoversUtilities::CleanExplain
   u.done = NebulumMarsRoversUtilities::Done
   u.make_error = NebulumMarsRoversUtilities::MakeError
   u.feature_add = NebulumMarsRoversUtilities::FeatureAdd
