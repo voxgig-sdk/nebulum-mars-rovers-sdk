@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -194,6 +195,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "2015-06-03",
+                      "field": True,
                     },
                     {
                       "name": "sol",
@@ -201,14 +203,14 @@ def make_config():
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 3718,
+                      "field": True,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "earth_date",
-                    "sol",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
               {
@@ -244,6 +246,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "2025-11-06",
+                      "field": True,
                     },
                     {
                       "name": "sol",
@@ -251,14 +254,14 @@ def make_config():
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 1676,
+                      "field": True,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "earth_date",
-                    "sol",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -304,6 +307,10 @@ def make_config():
                   "exist": [
                     "id",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

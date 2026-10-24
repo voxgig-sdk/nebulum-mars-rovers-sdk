@@ -1,0 +1,11 @@
+{
+  point: "warning"
+  note: "Points GET /rovers/curiosity/photos and GET /rovers/perseverance/photos on entity=photo op=list have the same selector (exist: none), so only GET /rovers/curiosity/photos is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "photo"
+  op: "list"
+  points: [
+    "GET /rovers/curiosity/photos"
+    "GET /rovers/perseverance/photos"
+  ]
+
+}

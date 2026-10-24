@@ -3,5 +3,17 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Access real-time photos taken by Mars rovers Perseverance and Curiosity through NASA missions. Developers can retrieve images based on unique photo IDs, Earth dates, or Martian sols. This API offers efficient access to fascinating Mars exploration data for enthusiasts and researchers.",
+      "Earth date when the photo was taken",
+      "Martian sol (day) when the photo was taken",
+      "Production server",
+      "Successful response with list of photos",
+      "Successful response with photo details",
+      "URL to the image file",
+      "Unique identifier for the photo"
+    ]
+  }
 }

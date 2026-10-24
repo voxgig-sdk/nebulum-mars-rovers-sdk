@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -184,22 +185,23 @@ class Config {
                                         "orig": "earth_date",
                                         "type": "`$STRING`",
                                         "kind": "query",
-                                        "example": "2015-06-03"
+                                        "example": "2015-06-03",
+                                        "field": true
                                     },
                                     {
                                         "name": "sol",
                                         "orig": "sol",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 3718
+                                        "example": 3718,
+                                        "field": true
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "earth_date",
-                                    "sol"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         },
                         {
@@ -234,22 +236,23 @@ class Config {
                                         "orig": "earth_date",
                                         "type": "`$STRING`",
                                         "kind": "query",
-                                        "example": "2025-11-06"
+                                        "example": "2025-11-06",
+                                        "field": true
                                     },
                                     {
                                         "name": "sol",
                                         "orig": "sol",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 1676
+                                        "example": 1676,
+                                        "field": true
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "earth_date",
-                                    "sol"
-                                ]
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -295,6 +298,10 @@ class Config {
                                 "exist": [
                                     "id"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

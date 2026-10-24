@@ -87,11 +87,9 @@ main: kit: entity: photo: {
           }
           m: "GET"
           o: "/rovers/curiosity/photos"
-          q: {
-            exist: [
-              "earth_date"
-              "sol"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -137,11 +135,9 @@ main: kit: entity: photo: {
           }
           m: "GET"
           o: "/rovers/perseverance/photos"
-          q: {
-            exist: [
-              "earth_date"
-              "sol"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -188,6 +184,10 @@ main: kit: entity: photo: {
             exist: [
               "id"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
